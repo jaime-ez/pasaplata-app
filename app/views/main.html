@@ -45,20 +45,24 @@
   </form>
 </div>
 
-<div class="row marketing", ng-show="quotation">
-  <table class="table">
-    <tr>
-      <th>Monto a Enviar (CLP)</th>
-      <th>Tasa de Cambio (COP/CLP)</th>
-      <th>Comisión (CLP)</th>
-      <th>Monto a ser recibido en destino (COP)</th>
-    </tr>
-    <tr>
-      <td>{{quotation.sourceAmount}}</th>
-      <td>{{_.round(quotation.marketExchangeRate, 5)}}</th>
-      <td>{{quotation.dinexFeeTotalAmount}}</th>
-      <td>{{quotation.destinationAmountMinusDinexFeeAndDepositFeeAndWithdrawalFee}}</th>
-    </tr>
+<div class="table-responsive", ng-show="quotation">
+  <table class="table table-bordered">
+    <thead class="thead-default">
+      <tr>
+        <th>Monto a Enviar</th>
+        <th>Tasa de Cambio</th>
+        <th>Comisión</th>
+        <th>Monto a ser recibido en destino</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{quotation.sourceAmount | currency:"CLP ":0}}</th>
+        <td>{{_.round(quotation.marketExchangeRate, 5)}} COP/CLP</th>
+        <td>{{quotation.dinexFeeTotalAmount | currency:"CLP ":0}}</th>
+        <td>{{quotation.destinationAmountMinusDinexFeeAndDepositFeeAndWithdrawalFee | currency:"COP ":0}}</th>
+      </tr>
+    </tbody>
   </table>
   <row class="col-md-6 text-center">
     <p><a class="btn btn-lg btn-success" ng-href="#/send">Quiero enviar! &nbsp;<span class="glyphicon glyphicon-ok"></span></a></p>
