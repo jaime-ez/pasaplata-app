@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name remittanceAppApp.controller:AboutCtrl
+ * @name remittanceApp.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the remittanceAppApp
+ * Controller of the remittanceApp
  */
-angular.module('remittanceAppApp')
+angular.module('remittanceApp')
   .controller('AboutCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',

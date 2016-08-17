@@ -2,21 +2,22 @@
 
 /**
  * @ngdoc overview
- * @name remittanceAppApp
+ * @name remittanceApp
  * @description
- * # remittanceAppApp
+ * # remittanceApp
  *
  * Main module of the application.
  */
 angular
-  .module('remittanceAppApp', [
+  .module('remittanceApp', [
     'ngAnimate',
     'ngCookies',
     'ngMessages',
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'angular-storage'
   ])
   .config(function ($routeProvider) {
     $routeProvider
