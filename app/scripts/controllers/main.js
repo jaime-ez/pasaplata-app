@@ -10,7 +10,7 @@ var quoteRemittanceUrl = 'https://gateway.test.dinex.cl/public/remittance/quote'
  * Controller of the remittanceApp
  */
 angular.module('remittanceApp')
-  .controller('MainCtrl', function ($scope, $routeParams, $http) {
+  .controller('MainCtrl', function ($scope, $http) {
   var self = this;
 
   // get basic exchange price
