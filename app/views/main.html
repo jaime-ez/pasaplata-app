@@ -1,14 +1,73 @@
 <div class="jumbotron">
+  <img src="images/colombia_flag.svg" alt="Colombia" width="150px" height="150px"><br>
   <h1>Envia dinero a Colombia</h1>
   <p class="lead">
-    <img src="images/colombia_flag.svg" alt="Colombia" width="200px" height="200px"><br>
-    En segundos, al menor costo
+    En segundos, con total seguridad y al menor costo
   </p>
-  <p class="lead">
-    Precio online:<br>
+  <p class="lead", ng-show="marketExchangeRateActual > 0">
+    Precio online:
+    <br>
     1 CLP = {{marketExchangeRateActual}} COP
   </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Quiero enviar!<span class="glyphicon glyphicon-ok"></span></a></p>
+  <p class="lead", ng-show="marketExchangeRateActual === 0">
+    Precio online:
+    <br>
+    Calculando...
+  </p>
+  <p class="lead", ng-show="marketExchangeRateActual === -1">
+    Servicio momentanemamente no disponible... reintentando en OCUPAR_ANGULAR_TIMER: https://siddii.github.io/angular-timer/index.html#/bower
+  </p>
+</div>
+
+<div ng-show="!quotation", ng-hide="marketExchangeRateActual === -1">
+  <form role="form" ng-submit="quote()">
+    <div class="row">
+      <h3>¿Cuanto quieres enviar?</h3>
+      <div class="input-group">
+        <span class="input-group-addon">$</span>
+        <input type="text" ng-model="sourceAmount" placeholder="Ingresa el monto a enviar desde Chile (en pesos Chilenos CLP)" class="form-control">
+        <span class="input-group-btn">
+          <input type="submit" class="btn btn-primary" value="Ok">
+        </span>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <h3>¿O cuanto quieres que reciban en Colombia?</h3>
+      <div class="input-group">
+        <span class="input-group-addon">$</span>
+        <input type="text" ng-model="destinationAmount" placeholder="Ingresa el monto a recibir en Colombia (en pesos Colombianos COP)" class="form-control">
+        <span class="input-group-btn">
+          <input type="submit" class="btn btn-primary" value="Ok">
+        </span>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="row marketing", ng-show="quotation">
+  <table class="table">
+    <tr>
+      <th>Monto a Enviar (CLP)</th>
+      <th>Tasa de Cambio (COP/CLP)</th>
+      <th>Comisión (CLP)</th>
+      <th>Monto a ser recibido en destino (COP)</th>
+    </tr>
+    <tr>
+      <td>{{quotation.sourceAmount}}</th>
+      <td>{{_.round(quotation.marketExchangeRate, 5)}}</th>
+      <td>{{quotation.dinexFeeTotalAmount}}</th>
+      <td>{{quotation.destinationAmountMinusDinexFeeAndDepositFeeAndWithdrawalFee}}</th>
+    </tr>
+  </table>
+  <row class="col-md-6 text-center">
+    <p><a class="btn btn-lg btn-success" ng-href="#/send">Quiero enviar! &nbsp;<span class="glyphicon glyphicon-ok"></span></a></p>
+  </row>
+  <row class="col-md-6 text-center">
+    <p><a class="btn btn-lg btn-info" ng-click="reset()">Cotizar de nuevo &nbsp;<span class="glyphicon glyphicon-repeat"></span></a></p>
+  </row>
+
+
 </div>
 
 <div class="row marketing">

@@ -10,27 +10,76 @@ var quoteRemittanceUrl = 'https://gateway.test.dinex.cl/public/remittance/quote'
  * Controller of the remittanceApp
  */
 angular.module('remittanceApp')
-  .controller('MainCtrl', function ($scope, $http) {
-  var self = this;
+  .controller('MainCtrl', function ($scope, $http, store, _) {
+  // make lodash available
+  $scope._ = _;
 
-  // get basic exchange price
-  self.basicQuotation = {
-      sourceCurrency: 'CLP',
-      sourceAmount: 100000
-  };
+  // reset function
+  $scope.reset = function () {
 
-  $scope.marketExchangeRateActual = 0;
+    // define variables
+    $scope.sourceCurrency = 'CLP';
+    $scope.sourceAmount = '';
+    $scope.destinationCurrency = 'COP';
+    $scope.destinationAmount = '';
+    $scope.quotation = false;
+    $scope.marketExchangeRateActual = 0;
+    // clear past quotations
+    store.remove('quotation')
 
-  // this sohould be a service
-  $http.post(quoteRemittanceUrl, self.basicQuotation).then(function successCallback(response) {
-    // we present market exchange rate
-    // TODO: change to marketExchangeRateActual after fixing remittancemaker response
-    $scope.marketExchangeRateActual = response.data.quotation.marketExchangeRate;
+    // get basic exchange price
+    var basicQuotation = {
+        sourceCurrency: $scope.sourceCurrency,
+        sourceAmount: 100000
+    };
 
-  }, function errorCallback(error) {
-    console.log(error);
-    $scope.marketExchangeRateActual = -1;
-  });
+    // this sohould be a service
+    $http.post(quoteRemittanceUrl, basicQuotation).then(function successCallback(response) {
+      // we present market exchange rate
+      // TODO: change to marketExchangeRateActual after fixing remittancemaker response
+      $scope.marketExchangeRateActual = _.round(response.data.quotation.marketExchangeRate, 5);
 
+    }, function errorCallback(error) {
+      console.log(error);
+      $scope.marketExchangeRateActual = -1;
+    });
+  }
+
+  $scope.reset();
+
+
+  // this should be a service
+  $scope.quote = function () {
+    var quoteOpts = false;
+    if ($scope.sourceAmount) {
+      quoteOpts = {
+        sourceAmount: _.toNumber($scope.sourceAmount),
+        sourceCurrency: $scope.sourceCurrency,
+        persist: true
+      }
+    } else if ($scope.destinationAmount) {
+      quoteOpts = {
+        destinationAmount: _.toNumber($scope.destinationAmount),
+        destinationCurrency: $scope.destinationCurrency,
+        persist: true
+      }
+    } else {
+      $scope.quotation = false;
+      quoteOpts = false;
+    }
+
+    if (quoteOpts) {
+      $http.post(quoteRemittanceUrl, quoteOpts).then(function successCallback(response) {
+        $scope.quotation = response.data.quotation;
+        $scope.quotation.uid = response.data.uid;
+        store.set('quotation', $scope.quotation)
+
+      }, function errorCallback(error) {
+        $scope.quotation = 'failed';
+        store.remove('quotation');
+      });
+    }
+
+  }
 
 });

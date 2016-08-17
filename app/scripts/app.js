@@ -31,6 +31,11 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+      .when('/send', {
+        templateUrl: 'views/send.html',
+        controller: 'SendCtrl',
+        controllerAs: 'send'
+      })
       .otherwise({
         redirectTo: '/'
       });
