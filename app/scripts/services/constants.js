@@ -39,7 +39,10 @@ var colombiaBankAccountTypes = [
   'Cuenta Corriente', 'Cuenta Ahorro'
 ];
 
+var emailRegex = /^([a-zA-Z0-9_\.\-]){0,100}\@(([a-zA-Z0-9\-]){0,100}\.)+([a-zA-Z0-9]{2,4})+$/;
+
 angular.module('remittanceApp')
   .constant('_', window._)
   .constant('COLOMBIA_BANKS', colombiaBanks)
-  .constant('COLOMBIA_BANK_ACCOUNT_TYPES', colombiaBankAccountTypes);
+  .constant('COLOMBIA_BANK_ACCOUNT_TYPES', colombiaBankAccountTypes)
+  .constant('EMAIL_REGEX', emailRegex);
