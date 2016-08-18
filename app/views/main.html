@@ -4,12 +4,12 @@
   <p class="lead">
     En segundos, con total seguridad y al menor costo
   </p>
-  <p class="lead", ng-show="marketExchangeRateActual > 0">
+  <p class="lead" ng-show="marketExchangeRateActual > 0">
     Precio online:
     <br>
     1 CLP = {{marketExchangeRateActual}} COP
   </p>
-  <p class="lead", ng-show="marketExchangeRateActual === 0">
+  <p class="lead" ng-show="marketExchangeRateActual === 0">
     Precio online:
     <br>
     <i class="fa fa-refresh fa-spin fa-fw"></i>
@@ -22,7 +22,7 @@
   </div>
 </div>
 
-<div ng-show="!quotation", ng-hide="marketExchangeRateActual === -1">
+<div ng-show="!quotation" ng-hide="marketExchangeRateActual === -1">
   <form role="form" ng-submit="quote()">
     <div class="row">
       <h3>¿Cuanto quieres enviar?</h3>
@@ -48,7 +48,7 @@
   </form>
 </div>
 
-<div class="table", ng-show="quotation">
+<div class="table" ng-show="quotation">
   <table class="table table-bordered">
     <thead class="thead-default">
       <tr>
