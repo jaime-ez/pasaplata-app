@@ -37,7 +37,7 @@ var colombiaBanks = [
 
 var colombiaBankAccountTypes = [
   'Cuenta Corriente', 'Cuenta Ahorro'
-]
+];
 
 angular.module('remittanceApp')
   .constant('_', window._)

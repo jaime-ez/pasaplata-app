@@ -25,7 +25,7 @@ angular.module('remittanceApp')
     $scope.quotation = false;
     $scope.marketExchangeRateActual = 0;
     // clear past quotations
-    store.remove('quotation')
+    store.remove('quotation');
 
     // get basic exchange price
     var basicQuotation = {
@@ -39,7 +39,7 @@ angular.module('remittanceApp')
       // TODO: change to marketExchangeRateActual after fixing remittancemaker response
       $scope.marketExchangeRateActual = _.round(response.data.quotation.marketExchangeRate, 5);
 
-    }, function errorCallback(error) {
+    }, function errorCallback() {
       $scope.marketExchangeRateActual = -1;
       setTimeout(function(){
         $scope.reset();
@@ -47,7 +47,7 @@ angular.module('remittanceApp')
       }, 10000);
 
     });
-  }
+  };
 
   $scope.reset();
 
@@ -60,13 +60,13 @@ angular.module('remittanceApp')
         sourceAmount: _.toNumber($scope.sourceAmount),
         sourceCurrency: $scope.sourceCurrency,
         persist: true
-      }
+      };
     } else if ($scope.destinationAmount) {
       quoteOpts = {
         destinationAmount: _.toNumber($scope.destinationAmount),
         destinationCurrency: $scope.destinationCurrency,
         persist: true
-      }
+      };
     } else {
       $scope.quotation = false;
       quoteOpts = false;
@@ -78,12 +78,10 @@ angular.module('remittanceApp')
         $scope.quotation.uid = response.data.uid;
         store.set('quotation', $scope.quotation);
 
-      }, function errorCallback(error) {
+      }, function errorCallback() {
         $scope.quotation = 'failed';
         store.remove('quotation');
       });
     }
-
-  }
-
+  };
 });
