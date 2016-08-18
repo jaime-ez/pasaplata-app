@@ -7,7 +7,8 @@
  * # validators
  */
 angular.module('remittanceApp')
-.directive('validateRut', function () {
+
+.directive('validateIdChile', function () {
   return {
     restrict: 'A',
     require: '?ngModel',
@@ -35,16 +36,18 @@ angular.module('remittanceApp')
           } else if (dv === 10) {
             dv = "k";
           } if ((dv === RUT[1].toLowerCase() || dv === parseInt(RUT[1])) && (parseInt(elRut) !== 11111111 && parseInt(elRut) !== 1)) {
-            ctrl.$setValidity('validateRut', true);
+            ctrl.$setValidity('validateIdChile', true);
+            console.log('yes')
             return value;
           } else {
-            ctrl.$setValidity('validateRut', false);
+            ctrl.$setValidity('validateIdChile', false);
+            console.log('no')
             return value;
           }
         } else {
           //formato incorrecto
           if(value) {
-            ctrl.$setValidity('validateRut', false);
+            ctrl.$setValidity('validateIdChile', false);
             return value;
           }
         }
@@ -52,7 +55,55 @@ angular.module('remittanceApp')
 
       ctrl.$formatters.push(validator);
       ctrl.$parsers.unshift(validator);
-      attr.$observe('validateRut', function() {
+      attr.$observe('validateIdChile', function() {
+        validator(ctrl.$viewValue);
+      });
+    }
+  };
+})
+
+.directive('validateIdColombia', function () {
+  return {
+    restrict: 'A',
+    require: '?ngModel',
+    link: function (scope, elm, attr, ctrl) {
+      if (!ctrl) {
+        return;
+      }
+
+      var validator = function(value) {
+        var rexp = new RegExp(/^([0-9])+\-([0-9])+$/);
+        var nums = [3,7,13,17,19,23,29,37,41,43,47,53,59,67,71]
+
+        if (value && rexp.test(value)) {
+          var RUT = value.split('-');
+          var elRut = RUT[0];
+          var factor = 2;
+          var suma = 0;
+          var dv;
+          for (var i=(elRut.length-1), j=0; i>=0; i--, j++) {
+            suma += parseInt(elRut[i], 10)*nums[j];
+          }
+          dv = (suma % 11) > 1 ? (11 - (suma % 11)) : (suma % 11);
+          if (dv === parseInt(RUT[1], 10) && (parseInt(elRut, 10) !== 11111111 && parseInt(elRut, 10) !== 1)) {
+            ctrl.$setValidity('validateIdColombia', true);
+            return value;
+          } else {
+            ctrl.$setValidity('validateIdColombia', false);
+            return value;
+          }
+        } else {
+          //formato incorrecto
+          if(value) {
+            ctrl.$setValidity('validateIdColombia', false);
+            return value;
+          }
+        }
+      };
+
+      ctrl.$formatters.push(validator);
+      ctrl.$parsers.unshift(validator);
+      attr.$observe('validateIdColombia', function() {
         validator(ctrl.$viewValue);
       });
     }
