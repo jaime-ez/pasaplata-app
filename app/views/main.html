@@ -48,7 +48,7 @@
   </form>
 </div>
 
-<div class="table" ng-show="quotation">
+<div class="table" ng-show="quotation && quotation != 'failed'">
   <table class="table table-bordered">
     <thead class="thead-default">
       <tr>
@@ -74,9 +74,19 @@
   <row class="col-md-6 text-center">
     <p><a class="btn btn-lg btn-info" ng-click="reset()">Cotizar de nuevo &nbsp;<span class="glyphicon glyphicon-repeat"></span></a></p>
   </row>
-
-
 </div>
+
+<div ng-show="quotation === 'failed'">
+  <div class="alert alert-warning" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    No es posible cotizar ese monto por el momento. Intenta con un monto más bajo. Si el problema persiste escríbenos.
+  </div>
+  <row class="col-md-12 text-center">
+    <p><a class="btn btn-lg btn-info" ng-click="reset()">Cotizar de nuevo &nbsp;<span class="glyphicon glyphicon-repeat"></span></a></p>
+  </row>
+</div>
+
 
 <div class="row marketing" ng-hide="quotation">
   <h3>Directo desde tu cuenta bancaria a la del destinatario en Colombia</h3>
