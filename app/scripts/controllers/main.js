@@ -40,8 +40,12 @@ angular.module('remittanceApp')
       $scope.marketExchangeRateActual = _.round(response.data.quotation.marketExchangeRate, 5);
 
     }, function errorCallback(error) {
-      console.log(error);
       $scope.marketExchangeRateActual = -1;
+      setTimeout(function(){
+        $scope.reset();
+        $scope.$broadcast('timer-add-cd-seconds', 10);
+      }, 10000);
+
     });
   }
 

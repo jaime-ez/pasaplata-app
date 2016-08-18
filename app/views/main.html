@@ -14,9 +14,12 @@
     <br>
     Calculando...
   </p>
-  <p class="lead", ng-show="marketExchangeRateActual === -1">
-    Servicio momentanemamente no disponible... reintentando en OCUPAR_ANGULAR_TIMER: https://siddii.github.io/angular-timer/index.html#/bower
-  </p>
+  <div class="alert alert-danger" role="alert" ng-show="marketExchangeRateActual === -1">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    Servicio momentanemamente no disponible... reintentando en
+    <timer interval="1000" countdown="10" language="es" class="ng-binding">{{secondUnit}}</timer>
+  </div>
 </div>
 
 <div ng-show="!quotation", ng-hide="marketExchangeRateActual === -1">
