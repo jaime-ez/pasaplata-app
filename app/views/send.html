@@ -1,170 +1,195 @@
-<!--Source and destination information-->
-<div ng-show="!remittanceInfo">
-  <div class="alert alert-info" role="alert">
-    <p>Ingresa los siguientes datos para confirmar el envío de {{quotation.sourceAmount | currency:"CLP $":0}} desde Chile para recibir {{quotation.destinationAmount | currency:"COP $":0}} en Colombia</p>
+<!--Before confirming the quotation and entering source and destination info-->
+<div ng-show="!quotationConfirmed">
+  <!--Alert when quotation time is expiring-->
+  <div ng-show="quotationTime === 'warning'">
+    <div class="alert alert-warning" role="alert">
+      <h4>
+        <i class="fa fa-clock-o"></i> ¡Atención! La cotización vencerá en
+        <timer interval="1000" language="es" end-time="quotation.expirationTime">{{minuteUnit}}</timer>
+      </h4>
+    </div>
+    <hr>
   </div>
-  <hr>
 
-  <form role="form" name="setRemittanceInfoForm" ng-submit="setRemittanceInfo()" ng-show="!remittanceInfo">
-    <div class="panel panel-default">
+  <!--Source and destination information-->
+  <div ng-show="!remittanceInfo">
+    <div class="alert alert-info" role="alert">
+      <p>Ingresa los siguientes datos para confirmar el envío de {{quotation.sourceAmount | currency:"CLP $":0}} desde Chile para recibir {{quotation.destinationAmount | currency:"COP $":0}} en Colombia</p>
+    </div>
+    <hr>
+
+    <form role="form" name="setRemittanceInfoForm" ng-submit="setRemittanceInfo()" ng-show="!remittanceInfo">
+      <div class="panel panel-default">
+        <div class="panel-heading">Datos de quién envía en Chile</div>
+        <div class="panel-body">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+              <input type="email" class="form-control" ng-model="sourceOpts.email" placeholder="Correo Electrónico" autofocus required ng-pattern="emailRegex">
+            </div>
+            <br>
+            <div class="input-group">
+              <span class="input-group-addon">RUT</span>
+              <input type="text" class="form-control" ng-model="sourceOpts.bankAccountHolderId" placeholder="RUT de la cuenta bancaria desde la cual harás la transferencia" required validate-id-chile>
+            </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Datos de quién recibe en Colombia</div>
+        <div class="panel-body">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+            <input type="email" class="form-control" ng-model="destinationOpts.email" placeholder="Correo Electrónico del destinatario" required ng-pattern="emailRegex">
+          </div>
+          <br>
+          <div class="input-group">
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{colombiaIdType}} <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li ng-show="colombiaIdType !== 'NIT'"><a href="" ng-click="colombiaIdType = 'NIT'">NIT</a></li>
+                <li ng-show="colombiaIdType !== 'CE'"><a href="" ng-click="colombiaIdType = 'CE'">CE</a></li>
+                <li ng-show="colombiaIdType !== 'CC'"><a href="" ng-click="colombiaIdType = 'CC'">CC</a></li>
+              </ul>
+            </div>
+            <input type="text" class="form-control" ng-model="destinationOpts.bankAccountHolderId" placeholder="Número de identidad del destinatario" required validate-id-colombia>
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-addon">Nombre</span>
+            <input type="text" class="form-control" ng-model="destinationOpts.bankAccountHolderName" placeholder="Nombre Completo del destinatario" required>
+          </div>
+          <br>
+          <label class="control-label">Selecciona el banco de destino</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-bank"></i></span>
+            <select class="form-control" ng-model="destinationOpts.bankName" required>
+              <option ng-repeat="bank in colombiaBanks" value="{{bank}}">{{bank}}</option>
+            </select>
+          </div>
+          <br>
+          <label class="control-label">Selecciona el tipo de cuenta</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-bank"></i></span>
+            <select class="form-control" ng-model="destinationOpts.bankAccountType" required>
+              <option ng-repeat="type in colombiaBankAccountTypes" value="{{type}}">{{type}}</option>
+            </select>
+          </div>
+          <br>
+          <label class="control-label">Ingresa el número de cuenta de destino</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-hand-o-right"></i></span>
+            <input type="text" class="form-control" ng-model="destinationOpts.bankAccountNumber" placeholder="Número de cuenta bancaria de destino" required>
+          </div>
+          <br>
+        </div>
+      </div>
+      <a class="btn btn-default pull-left" ng-href="#/">Nueva cotización &nbsp;<span class="glyphicon glyphicon-repeat"></span></a>
+      <button type="submit" class="btn btn-primary pull-right" ng-disabled="setRemittanceInfoForm.$invalid">Confirmar</button>
+      <br>
+    </form>
+    <br>
+  </div>
+
+  <!--Confirm source and destination information-->
+  <div ng-show="remittanceInfo">
+    <div class="well">
+      <p>¡Excelente! Revisa y confirma la información antes de enviar la remesa.</p>
+    </div>
+    <hr>
+
+    <div class="panel panel-info">
       <div class="panel-heading">Datos de quién envía en Chile</div>
       <div class="panel-body">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-            <input type="email" class="form-control" ng-model="sourceOpts.email" placeholder="Correo Electrónico" autofocus required ng-pattern="emailRegex">
+            <input class="form-control readonlyForm" ng-model="sourceOpts.email" readonly>
           </div>
           <br>
           <div class="input-group">
             <span class="input-group-addon">RUT</span>
-            <input type="text" class="form-control" ng-model="sourceOpts.bankAccountHolderId" placeholder="RUT de la cuenta bancaria desde la cual harás la transferencia" required validate-id-chile>
+            <input class="form-control readonlyForm" ng-model="sourceOpts.bankAccountHolderId" readonly>
           </div>
       </div>
     </div>
 
-    <div class="panel panel-default">
+    <div class="panel panel-info">
       <div class="panel-heading">Datos de quién recibe en Colombia</div>
       <div class="panel-body">
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-          <input type="email" class="form-control" ng-model="destinationOpts.email" placeholder="Correo Electrónico del destinatario" required ng-pattern="emailRegex">
+          <input class="form-control readonlyForm" ng-model="destinationOpts.email" readonly>
         </div>
         <br>
         <div class="input-group">
-          <div class="input-group-btn">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{colombiaIdType}} <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li ng-show="colombiaIdType !== 'NIT'"><a href="" ng-click="colombiaIdType = 'NIT'">NIT</a></li>
-              <li ng-show="colombiaIdType !== 'CE'"><a href="" ng-click="colombiaIdType = 'CE'">CE</a></li>
-              <li ng-show="colombiaIdType !== 'CC'"><a href="" ng-click="colombiaIdType = 'CC'">CC</a></li>
-            </ul>
-          </div>
-          <input type="text" class="form-control" ng-model="destinationOpts.bankAccountHolderId" placeholder="Número de identidad del destinatario" required validate-id-colombia>
+          <span class="input-group-addon">{{colombiaIdType}}</span>
+          <input class="form-control readonlyForm" ng-model="destinationOpts.bankAccountHolderId" readonly>
         </div>
         <br>
         <div class="input-group">
           <span class="input-group-addon">Nombre</span>
-          <input type="text" class="form-control" ng-model="destinationOpts.bankAccountHolderName" placeholder="Nombre Completo del destinatario" required>
+          <input class="form-control readonlyForm" ng-model="destinationOpts.bankAccountHolderName" readonly>
         </div>
         <br>
-        <label class="control-label">Selecciona el banco de destino</label>
+        <label class="control-label">Banco de destino</label>
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-bank"></i></span>
-          <select class="form-control" ng-model="destinationOpts.bankName" required>
-            <option ng-repeat="bank in colombiaBanks" value="{{bank}}">{{bank}}</option>
-          </select>
+          <input class="form-control readonlyForm" ng-model="destinationOpts.bankName" readonly>
         </div>
         <br>
-        <label class="control-label">Selecciona el tipo de cuenta</label>
+        <label class="control-label">Tipo de cuenta</label>
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-bank"></i></span>
-          <select class="form-control" ng-model="destinationOpts.bankAccountType" required>
-            <option ng-repeat="type in colombiaBankAccountTypes" value="{{type}}">{{type}}</option>
-          </select>
+          <input class="form-control readonlyForm" ng-model="destinationOpts.bankAccountType" readonly>
         </div>
         <br>
-        <label class="control-label">Ingresa el número de cuenta de destino</label>
+        <label class="control-label">Número de cuenta de destino</label>
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-hand-o-right"></i></span>
-          <input type="text" class="form-control" ng-model="destinationOpts.bankAccountNumber" placeholder="Número de cuenta bancaria de destino" required>
+          <input class="form-control readonlyForm" ng-model="destinationOpts.bankAccountNumber" readonly>
         </div>
         <br>
       </div>
     </div>
-    <a class="btn btn-default pull-left" ng-href="#/">Nueva cotización &nbsp;<span class="glyphicon glyphicon-repeat"></span></a>
-    <button type="submit" class="btn btn-primary pull-right" ng-disabled="setRemittanceInfoForm.$invalid">Confirmar</button>
-    <br>
-  </form>
-  <br>
-</div>
 
-<!--Confirm remittance-->
-<div ng-show="remittanceInfo">
-  <div class="well">
-    <p>¡Excelente! Revisa y confirma la información antes de enviar al remesa.</p>
-  </div>
-  <hr>
-
-  <div class="panel panel-info">
-    <div class="panel-heading">Datos de quién envía en Chile</div>
-    <div class="panel-body">
+    <div class="panel panel-info">
+      <div class="panel-heading">Remesa a enviar</div>
+      <div class="panel-body">
+        <label class="control-label">Monto a enviar desde Chile</label>
         <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-          <input class="form-control readonlyForm" ng-model="sourceOpts.email" readonly>
+          <span class="input-group-addon"><i class="fa fa-usd"></i> CLP</span>
+          <input class="form-control readonlyForm" ng-model="quotation.sourceAmount" readonly>
         </div>
         <br>
+        <label class="control-label">Monto a recibir en Colombia</label>
         <div class="input-group">
-          <span class="input-group-addon">RUT</span>
-          <input class="form-control readonlyForm" ng-model="sourceOpts.bankAccountHolderId" readonly>
+          <span class="input-group-addon"><i class="fa fa-usd"></i> COP</span>
+          <input class="form-control readonlyForm" ng-model="quotation.destinationAmountMinusDinexFeeAndDepositFeeAndWithdrawalFeesad" readonly>
         </div>
-    </div>
-  </div>
-
-  <div class="panel panel-info">
-    <div class="panel-heading">Datos de quién recibe en Colombia</div>
-    <div class="panel-body">
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-        <input class="form-control readonlyForm" ng-model="destinationOpts.email" readonly>
-      </div>
-      <br>
-      <div class="input-group">
-        <span class="input-group-addon">{{colombiaIdType}}</span>
-        <input class="form-control readonlyForm" ng-model="destinationOpts.bankAccountHolderId" readonly>
-      </div>
-      <br>
-      <div class="input-group">
-        <span class="input-group-addon">Nombre</span>
-        <input class="form-control readonlyForm" ng-model="destinationOpts.bankAccountHolderName" readonly>
-      </div>
-      <br>
-      <label class="control-label">Banco de destino</label>
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-bank"></i></span>
-        <input class="form-control readonlyForm" ng-model="destinationOpts.bankName" readonly>
-      </div>
-      <br>
-      <label class="control-label">Tipo de cuenta</label>
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-bank"></i></span>
-        <input class="form-control readonlyForm" ng-model="destinationOpts.bankAccountType" readonly>
-      </div>
-      <br>
-      <label class="control-label">Número de cuenta de destino</label>
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-hand-o-right"></i></span>
-        <input class="form-control readonlyForm" ng-model="destinationOpts.bankAccountNumber" readonly>
-      </div>
-      <br>
-    </div>
-  </div>
-
-  <div class="panel panel-info">
-    <div class="panel-heading">Remesa a enviar</div>
-    <div class="panel-body">
-      <label class="control-label">Monto a enviar desde Chile</label>
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-usd"></i> CLP</span>
-        <input class="form-control readonlyForm" ng-model="quotation.sourceAmount" readonly>
-      </div>
-      <br>
-      <label class="control-label">Monto a recibir en Colombia</label>
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-usd"></i> COP</span>
-        <input class="form-control readonlyForm" ng-model="quotation.destinationAmountMinusDinexFeeAndDepositFeeAndWithdrawalFeesad" readonly>
-      </div>
-      <br>
-      <label class="control-label">Comisión</label>
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-usd"></i> CLP</span>
-        <input class="form-control readonlyForm" ng-model="quotation.dinexFeeTotalAmount" readonly>
+        <br>
+        <label class="control-label">Comisión</label>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-usd"></i> CLP</span>
+          <input class="form-control readonlyForm" ng-model="quotation.dinexFeeTotalAmount" readonly>
+        </div>
       </div>
     </div>
+
+    <row class="col-md-6 text-center">
+      <p><a class="btn btn-default" ng-click="edit()">Editar &nbsp;<span class="glyphicon glyphicon-edit"></span></a></p>
+    </row>
+    <row class="col-md-6 text-center">
+      <p><a class="btn btn-success" ng-click="create()">Confirmar &nbsp;<span class="glyphicon glyphicon-ok"></span></a></p>
+    </row>
   </div>
 
-  <row class="col-md-6 text-center">
-    <p><a class="btn btn-default" ng-click="edit()">Editar &nbsp;<span class="glyphicon glyphicon-edit"></span></a></p>
-  </row>
-  <row class="col-md-6 text-center">
-    <p><a class="btn btn-success" ng-href="create()">Confirmar &nbsp;<span class="glyphicon glyphicon-ok"></span></a></p>
-  </row>
+  <!--Alert when quotation time is expiring-->
+  <div ng-show="quotationTime === 'warning'">
+    <hr>
+    <div class="alert alert-warning" role="alert">
+      <h4>
+        <i class="fa fa-clock-o"></i> ¡Atención! La cotización vencerá en
+        <timer interval="1000" language="es" end-time="quotation.expirationTime">{{minuteUnit}}</timer>
+      </h4>
+    </div>
+  </div>
 </div>
