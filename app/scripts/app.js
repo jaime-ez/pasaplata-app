@@ -18,7 +18,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'angular-storage',
-    'timer'
+    'timer',
+    'ngClipboard'
   ])
   .config(function ($routeProvider) {
     $routeProvider
