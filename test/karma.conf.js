@@ -37,6 +37,8 @@ module.exports = function(config) {
       'bower_components/moment/moment.js',
       'bower_components/humanize-duration/humanize-duration.js',
       'bower_components/angular-timer/dist/angular-timer.js',
+      'bower_components/clipboard/dist/clipboard.js',
+      'bower_components/ngclipboard/dist/ngclipboard.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
