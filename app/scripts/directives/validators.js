@@ -74,12 +74,11 @@ angular.module('remittanceApp')
 
       var validator = function(value) {
         var rexp = new RegExp(/^([0-9])+\-([0-9])+$/);
-        var nums = [3,7,13,17,19,23,29,37,41,43,47,53,59,67,71]
+        var nums = [3,7,13,17,19,23,29,37,41,43,47,53,59,67,71];
 
         if (value && rexp.test(value)) {
           var RUT = value.split('-');
           var elRut = RUT[0];
-          var factor = 2;
           var suma = 0;
           var dv;
           for (var i=(elRut.length-1), j=0; i>=0; i--, j++) {
