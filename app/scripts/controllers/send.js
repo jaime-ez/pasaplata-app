@@ -10,7 +10,7 @@ var createRemittanceUrl = 'https://gateway.test.dinex.cl/public/remittance/creat
  * Controller of the remittanceApp
  */
 angular.module('remittanceApp')
-  .controller('SendCtrl', function ($scope, $http, _, store, $location, COLOMBIA_BANKS, COLOMBIA_BANK_ACCOUNT_TYPES, EMAIL_REGEX) {
+  .controller('SendCtrl', function ($scope, $http, store, $location, _, COLOMBIA_BANKS, COLOMBIA_BANK_ACCOUNT_TYPES, EMAIL_REGEX) {
 
   // recuperar quotation
   $scope.quotation = store.get('quotation');
@@ -19,6 +19,8 @@ angular.module('remittanceApp')
     $location.path('#/');
   }
 
+  //constants available in scope
+  $scope._ = _;
   $scope.colombiaBanks = COLOMBIA_BANKS;
   $scope.colombiaBankAccountTypes = COLOMBIA_BANK_ACCOUNT_TYPES;
   $scope.emailRegex = EMAIL_REGEX;
@@ -34,7 +36,7 @@ angular.module('remittanceApp')
       email: '',
       bankAccountHolderId: '',
       bankAccountHolderName: '',
-      bankAccountName: '',
+      bankName: '',
       bankAccountType: '',
       bankAccountNumber: ''
     };
@@ -53,6 +55,10 @@ angular.module('remittanceApp')
 
   $scope.create = function() {
     // we create the remittance at gatewayd
+  };
+
+  $scope.edit = function() {
+    $scope.remittanceInfo = false;
   };
 
   });
