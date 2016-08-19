@@ -27,6 +27,7 @@ angular.module('remittanceApp')
 
   $scope.reset = function () {
     $scope.remittanceInfo = false;
+    $scope.colombiaIdType = 'CC';
     $scope.sourceOpts = {
       email: '',
       bankAccountHolderId: ''
