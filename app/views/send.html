@@ -193,3 +193,65 @@
     </div>
   </div>
 </div>
+
+<!--After confirming the quotation-->
+<div ng-show="quotationConfirmed">
+  <div class="alert alert-warning" role="alert">
+    <h4>
+      ¡Excelente! Haz la transferencia bancaria antes de
+      <strong>
+        <timer interval="1000" language="es" end-time="quotation.expirationTime">{{minuteUnit}}</timer>
+      </strong>
+      para que ejecutemos la remesa.
+    </h4>
+  </div>
+  <div class="panel panel-primary">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Datos cuenta bancaria</div>
+    <!-- Table -->
+    <table class="table">
+      <tbody>
+        <tr>
+          <th scope="row">Razón social</th>
+          <td>Dinex Spa</td>
+        </tr>
+        <tr>
+          <th scope="row">RUT</th>
+          <td id="dinexRUT">76436908-4
+            <button class="btn btn-xs btn-default pull-right" ngclipboard data-clipboard-target="#dinexRUT">
+              <i class="fa fa-copy"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Banco</th>
+          <td>Banco de Chile</td>
+        </tr>
+        <tr>
+          <th scope="row">Cuenta Corriente</th>
+          <td id="dinexBankAccountNumber">2201053400
+            <button class="btn btn-xs btn-default pull-right" ngclipboard data-clipboard-target="#dinexBankAccountNumber">
+              <i class="fa fa-copy"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Email</th>
+          <td id="dinexEmail">depositos@dinex.cl
+            <button class="btn btn-xs btn-default pull-right" ngclipboard data-clipboard-target="#dinexEmail">
+              <i class="fa fa-copy"></i>
+            </button>
+          </td>
+        </tr>
+        <tr class="bg-success">
+          <th scope="row">Monto a Transferir</th>
+          <td>{{quotation.sourceAmount | currency:"CLP $":0}}
+            <button class="btn btn-xs btn-default pull-right" ngclipboard data-clipboard-text="{{quotation.sourceAmount}}">
+              <i class="fa fa-copy"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
