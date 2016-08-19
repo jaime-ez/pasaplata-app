@@ -37,11 +37,9 @@ angular.module('remittanceApp')
             dv = "k";
           } if ((dv === RUT[1].toLowerCase() || dv === parseInt(RUT[1])) && (parseInt(elRut) !== 11111111 && parseInt(elRut) !== 1)) {
             ctrl.$setValidity('validateIdChile', true);
-            console.log('yes')
             return value;
           } else {
             ctrl.$setValidity('validateIdChile', false);
-            console.log('no')
             return value;
           }
         } else {
@@ -63,6 +61,9 @@ angular.module('remittanceApp')
 })
 
 .directive('validateIdColombia', function () {
+  /*
+  * not enabled because colombia id are not standard - yet
+  */
   return {
     restrict: 'A',
     require: '?ngModel',
