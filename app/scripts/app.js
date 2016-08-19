@@ -19,7 +19,7 @@ angular
     'ngTouch',
     'angular-storage',
     'timer',
-    'ngClipboard'
+    'ngclipboard'
   ])
   .config(function ($routeProvider) {
     $routeProvider
