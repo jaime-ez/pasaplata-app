@@ -19,7 +19,8 @@ angular
     'ngTouch',
     'angular-storage',
     'timer',
-    'ngclipboard'
+    'ngclipboard',
+    'platanus.rut'
   ])
   .config(function ($routeProvider) {
     $routeProvider
