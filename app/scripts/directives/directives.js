@@ -17,4 +17,30 @@ angular.module('remittanceApp')
       });
     });
   };
+})
+
+.directive('focusNext', function(_) {
+  return {
+    restrict: 'A',
+    link: function($scope, elem, attr) {
+
+      /** Usage:
+        <input focus-next="here">
+        <input id="here">
+        Upon pressing ENTER key the directive will switch focus to
+        the next declared field
+        The last field should not have next-focus directive to avoid
+        focusing on non-existing element.
+        Works for Web, iOS (Go button) & Android (Next button) browsers,
+      **/
+
+      elem.bind('keydown', function(e) {
+        var code = e.keyCode || e.which;
+        if (code === 13) {
+          e.preventDefault();
+          document.querySelector('#' + _.toString(attr.focusNext)).focus();
+        }
+      });
+    }
+  };
 });
