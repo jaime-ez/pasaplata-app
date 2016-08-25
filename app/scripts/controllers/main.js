@@ -54,6 +54,7 @@ angular.module('remittanceApp')
 
   // this should be a service
   $scope.quote = function () {
+    $scope.quotation = 'pending';
     var quoteOpts = false;
     if ($scope.sourceAmount) {
       quoteOpts = {
