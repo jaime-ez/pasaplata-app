@@ -38,8 +38,8 @@
         <div class="panel-heading">Datos de quién recibe en Colombia</div>
         <div class="panel-body">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-            <input type="email" class="form-control" ng-model="destinationOpts.email" placeholder="Correo Electrónico del destinatario" required ng-pattern="emailRegex">
+            <span class="input-group-addon"><i class="fa fa-phone"></i> +57</span>
+            <input type="text" class="form-control" ng-model="destinationOpts.phoneNumber" placeholder="Teléfono del destinatario" required phone-number="CO">
           </div>
           <br>
           <div class="input-group">
@@ -109,8 +109,8 @@
       <div class="panel-heading">Datos de quién recibe en Colombia</div>
       <div class="panel-body">
         <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-          <input class="form-control readonlyForm" ng-model="destinationOpts.email" readonly>
+          <span class="input-group-addon"><i class="fa fa-phone"></i>+57</span>
+          <input class="form-control readonlyForm" ng-model="destinationOpts.phone" readonly>
         </div>
         <br>
         <div class="input-group">

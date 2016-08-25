@@ -30,7 +30,8 @@ angular.module('remittanceApp')
     };
 
     $scope.destinationOpts = {
-      email: '',
+      phoneNumber: '',
+      phoneNumberType: '',
       bankAccountHolderId: '',
       bankAccountHolderName: '',
       bankName: '',
@@ -48,10 +49,17 @@ angular.module('remittanceApp')
 
   // set remittance source and destination information
   $scope.setRemittanceInfo = function() {
+    // set source info
     $scope.remittanceInfo = true;
     $scope.sourceOpts.bankAccountHolderId = ADD_DASH_RUT($scope.sourceOpts.bankAccountHolderId);
     store.set('sourceOpts', $scope.sourceOpts);
+
+    // set destination info
     var destinations = store.get('destinationOpts') ? store.get('destinationOpts') : [];
+
+    if ($scope.phoneNumberType) {
+      $scope.destinationOpts.phoneNumberType = $scope.phoneNumberType;
+    }
     destinations.push($scope.destinationOpts);
     store.set('destinationOpts', destinations);
   };
