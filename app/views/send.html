@@ -70,13 +70,13 @@
           <br>
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-hand-o-right"></i></span>
-            <input id="destBankAccNumber" type="tel" class="form-control" ng-model="destinationOpts.bankAccountNumber" placeholder="Número de cuenta bancaria de destino" required>
+            <input id="destBankAccNumber" type="tel" class="form-control" ng-model="destinationOpts.bankAccountNumber" placeholder="Número de cuenta bancaria de destino" required focus-next="confirm">
           </div>
           <br>
         </div>
       </div>
       <a class="btn btn-default pull-left" ng-href="#/">Nueva cotización &nbsp;<span class="glyphicon glyphicon-repeat"></span></a>
-      <button type="submit" class="btn btn-primary pull-right" ng-disabled="setRemittanceInfoForm.$invalid">Confirmar</button>
+      <button id="confirm" type="submit" class="btn btn-primary pull-right" ng-disabled="setRemittanceInfoForm.$invalid">Confirmar</button>
       <br>
     </form>
     <br>
