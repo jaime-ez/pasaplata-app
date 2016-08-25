@@ -152,4 +152,40 @@ angular.module('remittanceApp')
       });
     }
   };
+})
+
+.directive('phoneNumber', function (_, ngPhone) {
+
+  return {
+    restrict: 'A',
+    require: '?ngModel',
+    link: function (scope, elm, attr, ctrl) {
+      if (!ctrl) {
+        return;
+      }
+
+      var validator = function(value) {
+
+        var countryCode = _.toString(attr.phoneNumber);
+        var isValid = ngPhone.isValidNumber(value, countryCode);
+
+        if (isValid) {
+          var formattedPhone = ngPhone.format(value, countryCode);
+          ctrl.$setValidity('phoneNumber', true);
+          // sets scope variable with phoneNumberType
+          scope.phoneNumberType = ngPhone.getNumberType(formattedPhone, countryCode);
+          return formattedPhone;
+        } else {
+          ctrl.$setValidity('phoneNumber', false);
+          return value;
+        }
+      };
+
+      ctrl.$formatters.push(validator);
+      ctrl.$parsers.unshift(validator);
+      attr.$observe('phoneNumber', function() {
+        validator(ctrl.$viewValue);
+      });
+    }
+  };
 });
