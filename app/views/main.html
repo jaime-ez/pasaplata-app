@@ -48,7 +48,7 @@
   </form>
 </div>
 
-<div class="table" ng-show="quotation && quotation != 'failed'">
+<div class="table" ng-show="quotation && quotation != 'failed' && quotation != 'pending'">
   <table class="table table-bordered">
     <thead class="thead-default">
       <tr>
@@ -85,6 +85,15 @@
   <row class="col-md-12 text-center">
     <p><a class="btn btn-lg btn-info" ng-click="reset()">Cotizar de nuevo &nbsp;<span class="glyphicon glyphicon-repeat"></span></a></p>
   </row>
+</div>
+
+<div ng-show="quotation === 'pending'">
+  <div class="alert alert-info" role="alert">
+    <h4>
+      <i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
+      Cotizando...
+    </h4>
+  </div>
 </div>
 
 
