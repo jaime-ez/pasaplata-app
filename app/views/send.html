@@ -43,15 +43,8 @@
           </div>
           <br>
           <div class="input-group">
-            <div class="input-group-btn">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{colombiaIdType}} <span class="caret"></span></button>
-              <ul class="dropdown-menu">
-                <li ng-show="colombiaIdType !== 'NIT'"><a href="" ng-click="colombiaIdType = 'NIT'">NIT</a></li>
-                <li ng-show="colombiaIdType !== 'CE'"><a href="" ng-click="colombiaIdType = 'CE'">CE</a></li>
-                <li ng-show="colombiaIdType !== 'CC'"><a href="" ng-click="colombiaIdType = 'CC'">CC</a></li>
-              </ul>
-            </div>
-            <input type="text" class="form-control" ng-model="destinationOpts.bankAccountHolderId" placeholder="Número de identidad del destinatario" required validate-id-colombia>
+            <span class="input-group-addon">CC</span>
+            <input type="text" class="form-control" ng-model="destinationOpts.bankAccountHolderId" placeholder="Número de ciudadania del destinatario" required validate-id-colombia="CC">
           </div>
           <br>
           <div class="input-group">
@@ -121,7 +114,7 @@
         </div>
         <br>
         <div class="input-group">
-          <span class="input-group-addon">{{colombiaIdType}}</span>
+          <span class="input-group-addon">CC</span>
           <input class="form-control readonlyForm" ng-model="destinationOpts.bankAccountHolderId" readonly>
         </div>
         <br>

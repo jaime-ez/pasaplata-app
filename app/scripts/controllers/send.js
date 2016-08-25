@@ -24,7 +24,6 @@ angular.module('remittanceApp')
     $scope.quotationConfirmed = false;
 
     $scope.remittanceInfo = false;
-    $scope.colombiaIdType = 'CC';
     $scope.sourceOpts = {
       email: '',
       bankAccountHolderId: ''
