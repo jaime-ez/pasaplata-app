@@ -21,7 +21,8 @@ angular
     'timer',
     'ngclipboard',
     'platanus.rut',
-    'formatAsCurrencyCode'
+    'formatAsCurrencyCode',
+    'ng-phone'
   ])
   .config(function ($routeProvider) {
     $routeProvider

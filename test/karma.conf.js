@@ -41,6 +41,7 @@ module.exports = function(config) {
       'bower_components/ngclipboard/dist/ngclipboard.js',
       'bower_components/angular-rut/dist/angular-rut.min.js',
       'bower_components/format-as-currency-code/dist/format-as-currency-code.min.js',
+      'bower_components/ngPhone/ng-phone.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
