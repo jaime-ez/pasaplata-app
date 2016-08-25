@@ -24,12 +24,12 @@
         <div class="panel-body">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-              <input type="email" class="form-control" ng-model="sourceOpts.email" placeholder="Correo Electrónico" autofocus required ng-pattern="emailRegex">
+              <input type="email" class="form-control" ng-model="sourceOpts.email" placeholder="Correo Electrónico" autofocus required ng-pattern="emailRegex" focus-next="rut">
             </div>
             <br>
             <div class="input-group">
               <span class="input-group-addon">RUT</span>
-              <input type="tel" class="form-control" ng-model="sourceOpts.bankAccountHolderId" placeholder="RUT de la cuenta bancaria desde la cual harás la transferencia" required ng-rut>
+              <input id="rut" type="tel" class="form-control" ng-model="sourceOpts.bankAccountHolderId" placeholder="RUT de la cuenta bancaria desde la cual harás la transferencia" required ng-rut focus-next="destPhone">
             </div>
         </div>
       </div>
@@ -39,23 +39,23 @@
         <div class="panel-body">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-phone"></i> +57</span>
-            <input type="tel" class="form-control" ng-model="destinationOpts.phoneNumber" placeholder="Teléfono del destinatario" required phone-number="CO">
+            <input id="destPhone" type="tel" class="form-control" ng-model="destinationOpts.phoneNumber" placeholder="Teléfono del destinatario" required phone-number="CO" focus-next="destId">
           </div>
           <br>
           <div class="input-group">
             <span class="input-group-addon">CC</span>
-            <input type="tel" class="form-control" ng-model="destinationOpts.bankAccountHolderId" placeholder="Número de ciudadania del destinatario" required validate-id-colombia="CC">
+            <input id="destId" type="tel" class="form-control" ng-model="destinationOpts.bankAccountHolderId" placeholder="Número de ciudadania del destinatario" required validate-id-colombia="CC" focus-next="destName">
           </div>
           <br>
           <div class="input-group">
             <span class="input-group-addon">Nombre</span>
-            <input type="text" class="form-control" ng-model="destinationOpts.bankAccountHolderName" placeholder="Nombre Completo del destinatario" required>
+            <input id="destName" type="text" class="form-control" ng-model="destinationOpts.bankAccountHolderName" placeholder="Nombre Completo del destinatario" required focus-next="destBankSelect">
           </div>
           <br>
           <label class="control-label">Selecciona el banco de destino</label>
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-bank"></i></span>
-            <select class="form-control" ng-model="destinationOpts.bankName" required>
+            <select id="destBankSelect" class="form-control" ng-model="destinationOpts.bankName" required focus-next="destBankAccType">
               <option ng-repeat="bank in colombiaBanks" value="{{bank}}">{{bank}}</option>
             </select>
           </div>
@@ -63,7 +63,7 @@
           <label class="control-label">Selecciona el tipo de cuenta</label>
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-bank"></i></span>
-            <select class="form-control" ng-model="destinationOpts.bankAccountType" required>
+            <select id="destBankAccType" class="form-control" ng-model="destinationOpts.bankAccountType" required focus-next="destBankAccNumber">
               <option ng-repeat="type in colombiaBankAccountTypes" value="{{type}}">{{type}}</option>
             </select>
           </div>
@@ -71,7 +71,7 @@
           <label class="control-label">Ingresa el número de cuenta de destino</label>
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-hand-o-right"></i></span>
-            <input type="tel" class="form-control" ng-model="destinationOpts.bankAccountNumber" placeholder="Número de cuenta bancaria de destino" required>
+            <input id="destBankAccNumber" type="tel" class="form-control" ng-model="destinationOpts.bankAccountNumber" placeholder="Número de cuenta bancaria de destino" required>
           </div>
           <br>
         </div>
