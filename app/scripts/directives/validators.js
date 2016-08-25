@@ -8,7 +8,7 @@
  */
 angular.module('remittanceApp')
 
-.directive('validateIdColombia', function () {
+.directive('validateIdColombia', function (_) {
   /*
   * requires scope variable named colombiaIdType
   */
@@ -22,7 +22,7 @@ angular.module('remittanceApp')
 
       var validator = function(value) {
 
-        if (scope.colombiaIdType === 'NIT') {
+        if (_.toString(attr.validateIdColombia) === 'NIT') {
           var rexp = new RegExp(/^([0-9])+\-([0-9])+$/);
           var nums = [3,7,13,17,19,23,29,37,41,43,47,53,59,67,71];
 
@@ -49,7 +49,7 @@ angular.module('remittanceApp')
               return value;
             }
           }
-        } else if (scope.colombiaIdType === 'CC') {
+        } else if (_.toString(attr.validateIdColombia) === 'CC') {
           //check that is number
           if (/^\d+$/.test(value)) {
             if (value.length === 10) {
