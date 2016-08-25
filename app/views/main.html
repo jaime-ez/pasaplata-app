@@ -28,7 +28,7 @@
       <h3>¿Cuanto quieres enviar?</h3>
       <div class="input-group">
         <span class="input-group-addon">$</span>
-        <input type="text" ng-model="sourceAmount" placeholder="Ingresa el monto a enviar desde Chile (en pesos Chilenos CLP)" class="form-control" format-as-currency-code="CLP" max-value="600000" min-value="0">
+        <input type="tel" ng-model="sourceAmount" placeholder="Ingresa el monto a enviar desde Chile (en pesos Chilenos CLP)" class="form-control" format-as-currency-code="CLP" max-value="600000" min-value="0" ng-blur="quote()">
         <span class="input-group-btn">
           <input type="submit" class="btn btn-primary" value="Ok">
         </span>
@@ -39,7 +39,7 @@
       <h3>¿O cuanto quieres que reciban en Colombia?</h3>
       <div class="input-group">
         <span class="input-group-addon">$</span>
-        <input type="text" ng-model="destinationAmount" placeholder="Ingresa el monto a recibir en Colombia (en pesos Colombianos COP)" class="form-control" format-as-currency-code="COP" max-value="2500000" min-value="0">
+        <input type="tel" ng-model="destinationAmount" placeholder="Ingresa el monto a recibir en Colombia (en pesos Colombianos COP)" class="form-control" format-as-currency-code="COP" max-value="2500000" min-value="0" ng-blur="quote()">
         <span class="input-group-btn">
           <input type="submit" class="btn btn-primary" value="Ok">
         </span>
