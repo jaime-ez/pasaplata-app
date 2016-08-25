@@ -29,7 +29,7 @@
             <br>
             <div class="input-group">
               <span class="input-group-addon">RUT</span>
-              <input type="text" class="form-control" ng-model="sourceOpts.bankAccountHolderId" placeholder="RUT de la cuenta bancaria desde la cual harás la transferencia" required ng-rut>
+              <input type="tel" class="form-control" ng-model="sourceOpts.bankAccountHolderId" placeholder="RUT de la cuenta bancaria desde la cual harás la transferencia" required ng-rut>
             </div>
         </div>
       </div>
@@ -39,12 +39,12 @@
         <div class="panel-body">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-phone"></i> +57</span>
-            <input type="text" class="form-control" ng-model="destinationOpts.phoneNumber" placeholder="Teléfono del destinatario" required phone-number="CO">
+            <input type="tel" class="form-control" ng-model="destinationOpts.phoneNumber" placeholder="Teléfono del destinatario" required phone-number="CO">
           </div>
           <br>
           <div class="input-group">
             <span class="input-group-addon">CC</span>
-            <input type="text" class="form-control" ng-model="destinationOpts.bankAccountHolderId" placeholder="Número de ciudadania del destinatario" required validate-id-colombia="CC">
+            <input type="tel" class="form-control" ng-model="destinationOpts.bankAccountHolderId" placeholder="Número de ciudadania del destinatario" required validate-id-colombia="CC">
           </div>
           <br>
           <div class="input-group">
@@ -71,7 +71,7 @@
           <label class="control-label">Ingresa el número de cuenta de destino</label>
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-hand-o-right"></i></span>
-            <input type="text" class="form-control" ng-model="destinationOpts.bankAccountNumber" placeholder="Número de cuenta bancaria de destino" required>
+            <input type="tel" class="form-control" ng-model="destinationOpts.bankAccountNumber" placeholder="Número de cuenta bancaria de destino" required>
           </div>
           <br>
         </div>
