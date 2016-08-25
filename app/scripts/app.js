@@ -20,7 +20,8 @@ angular
     'angular-storage',
     'timer',
     'ngclipboard',
-    'platanus.rut'
+    'platanus.rut',
+    'formatAsCurrencyCode'
   ])
   .config(function ($routeProvider) {
     $routeProvider
