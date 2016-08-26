@@ -46,7 +46,6 @@ angular.module('remittanceApp')
         $scope.reset();
         $scope.$broadcast('timer-add-cd-seconds', 10);
       }, 10000);
-
     });
   };
 
