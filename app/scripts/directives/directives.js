@@ -34,6 +34,13 @@ angular.module('remittanceApp')
         Works for Web, iOS (Go button) & Android (Next button) browsers,
       **/
 
+      // for buttons
+      elem.bind('click', function(e) {
+        e.preventDefault();
+        document.querySelector('#' + _.toString(attr.focusNext)).focus();
+      });
+
+      //for text input
       elem.bind('keydown', function(e) {
         var code = e.keyCode || e.which;
         if (code === 13) {
