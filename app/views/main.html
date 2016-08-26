@@ -23,29 +23,49 @@
 </div>
 
 <div ng-show="!quotation" ng-hide="marketExchangeRateActual === -1">
+  <h4 class="text-center">
+    <span class="label label-info">Selecciona</span>
+  </h4>
+  <br>
   <form role="form" ng-submit="quote()">
-    <div class="row">
-      <h3>¿Cuanto quieres enviar?</h3>
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default btn-lg" style="white-space:normal" ng-click="selected = 'clp'">Monto a enviar</button>
+      </div>
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default btn-lg" style="white-space:normal" ng-click="selected = 'cop'">Monto a recibir</button>
+      </div>
+    </div>
+    <div ng-show="selected === 'clp'">
+      <h3>Ingresa el monto a enviar desde Chile</h3>
       <div class="input-group">
         <span class="input-group-addon">$</span>
-        <input type="tel" ng-model="sourceAmount" placeholder="Ingresa el monto a enviar desde Chile (en pesos Chilenos CLP)" class="form-control" format-as-currency-code="CLP" max-value="600000" min-value="0" ng-blur="quote()">
+        <input type="tel" ng-model="sourceAmount" placeholder="En pesos Chilenos (CLP)" class="form-control" format-as-currency-code="CLP" max-value="600000" min-value="0">
         <span class="input-group-btn">
-          <input type="submit" class="btn btn-primary" value="Ok">
+          <input type="submit" class="btn btn-primary" value="Cotizar">
         </span>
       </div>
     </div>
-    <br>
-    <div class="row">
-      <h3>¿O cuanto quieres que reciban en Colombia?</h3>
+    <div ng-show="selected === 'cop'">
+      <h3>Ingresa el monto a recibir en Colombia</h3>
       <div class="input-group">
         <span class="input-group-addon">$</span>
-        <input type="tel" ng-model="destinationAmount" placeholder="Ingresa el monto a recibir en Colombia (en pesos Colombianos COP)" class="form-control" format-as-currency-code="COP" max-value="2500000" min-value="0" ng-blur="quote()">
+        <input type="tel" ng-model="destinationAmount" placeholder="En pesos Colombianos (COP)" class="form-control" format-as-currency-code="COP" max-value="2500000" min-value="0">
         <span class="input-group-btn">
-          <input type="submit" class="btn btn-primary" value="Ok">
+          <input type="submit" class="btn btn-primary" value="Cotizar">
         </span>
       </div>
     </div>
   </form>
+</div>
+
+<div ng-show="quotation === 'pending'">
+  <div class="alert alert-info" role="alert">
+    <h4>
+      <i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
+      Cotizando...
+    </h4>
+  </div>
 </div>
 
 <div class="table" ng-show="quotation && quotation != 'failed' && quotation != 'pending'">
@@ -86,16 +106,6 @@
     <p><a class="btn btn-lg btn-info" ng-click="reset()">Cotizar de nuevo &nbsp;<span class="glyphicon glyphicon-repeat"></span></a></p>
   </row>
 </div>
-
-<div ng-show="quotation === 'pending'">
-  <div class="alert alert-info" role="alert">
-    <h4>
-      <i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
-      Cotizando...
-    </h4>
-  </div>
-</div>
-
 
 <div class="row marketing" ng-hide="quotation">
   <h3>Directo desde tu cuenta bancaria a la del destinatario en Colombia</h3>
