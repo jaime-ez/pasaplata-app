@@ -30,17 +30,17 @@
   <form role="form" ng-submit="quote()">
     <div class="btn-group btn-group-justified" role="group" aria-label="...">
       <div class="btn-group" role="group">
-        <button type="button" class="btn btn-default btn-lg" style="white-space:normal" ng-click="selected = 'clp'">Monto a enviar</button>
+        <button type="button" class="btn btn-default btn-lg" style="white-space:normal" ng-click="selected = 'clp'" focus-next="srcAmnt">Monto a enviar</button>
       </div>
       <div class="btn-group" role="group">
-        <button type="button" class="btn btn-default btn-lg" style="white-space:normal" ng-click="selected = 'cop'">Monto a recibir</button>
+        <button type="button" class="btn btn-default btn-lg" style="white-space:normal" ng-click="selected = 'cop'" focus-next="dstAmnt">Monto a recibir</button>
       </div>
     </div>
     <div ng-show="selected === 'clp'">
       <h3>Ingresa el monto a enviar desde Chile</h3>
       <div class="input-group">
         <span class="input-group-addon">$</span>
-        <input type="tel" ng-model="sourceAmount" placeholder="En pesos Chilenos (CLP)" class="form-control" format-as-currency-code="CLP" max-value="600000" min-value="0">
+        <input id="srcAmnt" type="tel" ng-model="sourceAmount" placeholder="En pesos Chilenos (CLP)" class="form-control" format-as-currency-code="CLP" max-value="600000" min-value="0">
         <span class="input-group-btn">
           <input type="submit" class="btn btn-primary" value="Cotizar">
         </span>
@@ -50,7 +50,7 @@
       <h3>Ingresa el monto a recibir en Colombia</h3>
       <div class="input-group">
         <span class="input-group-addon">$</span>
-        <input type="tel" ng-model="destinationAmount" placeholder="En pesos Colombianos (COP)" class="form-control" format-as-currency-code="COP" max-value="2500000" min-value="0">
+        <input id="dstAmnt" type="tel" ng-model="destinationAmount" placeholder="En pesos Colombianos (COP)" class="form-control" format-as-currency-code="COP" max-value="2500000" min-value="0">
         <span class="input-group-btn">
           <input type="submit" class="btn btn-primary" value="Cotizar">
         </span>
