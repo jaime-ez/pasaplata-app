@@ -45,7 +45,15 @@ angular.module('remittanceApp')
       //for text input
       elem.bind('keydown', function(e) {
         var code = e.keyCode || e.which;
+
+        // catch enter
         if (code === 13) {
+          e.preventDefault();
+          document.querySelector('#' + _.toString(attr.focusNext)).focus();
+        }
+
+        // catch tab as "enter" on input type tel
+        if (code === 9 && !e.shiftKey) {
           e.preventDefault();
           document.querySelector('#' + _.toString(attr.focusNext)).focus();
         }
