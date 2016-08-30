@@ -45,8 +45,8 @@
           <input type="submit" class="btn btn-primary" value="Cotizar" ng-disabled="formQuote.$invalid">
         </span>
       </div>
-      <div on-error="srcAmnt:minValue:Valor debe ser mayor a cero"></div>
-      <div on-error="srcAmnt:maxValue:Valor debe ser menor a 600 000"></div>
+      <div on-error="srcAmnt:minValue:Valor debe ser mayor a cero:I"></div>
+      <div on-error="srcAmnt:maxValue:Valor debe ser menor a 600 000:I"></div>
     </div>
     <div ng-show="selected === 'cop'">
       <h3>Ingresa el monto a recibir en Colombia</h3>
@@ -57,8 +57,8 @@
           <input type="submit" class="btn btn-primary" value="Cotizar" ng-disabled="formQuote.$invalid">
         </span>
       </div>
-      <div on-error="dstAmnt:minValue:Valor debe ser mayor a cero"></div>
-      <div on-error="dstAmnt:maxValue:Valor debe ser menor a 2 500 000"></div>
+      <div on-error="dstAmnt:minValue:Valor debe ser mayor a cero:I"></div>
+      <div on-error="dstAmnt:maxValue:Valor debe ser menor a 2 500 000:I"></div>
     </div>
   </form>
 </div>
