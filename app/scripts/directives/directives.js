@@ -35,13 +35,12 @@ angular.module('remittanceApp')
       **/
 
       // for buttons on mobile
-      // re-evaluate this because on desktop makes it useless by switching focus all the time
-/*
-      elem.bind('click', function(e) {
-        e.preventDefault();
-        document.querySelector('#' + _.toString(attr.focusNext)).focus();
-      });
-*/
+      if (_.toString(elem[0].nodeName) === 'BUTTON') {
+        elem.bind('click', function(e) {
+          e.preventDefault();
+          document.querySelector('#' + _.toString(attr.focusNext)).focus();
+        });
+      }
 
       //for text input
       elem.bind('keydown', function(e) {
