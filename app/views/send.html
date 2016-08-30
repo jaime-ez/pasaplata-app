@@ -22,15 +22,18 @@
       <div class="panel panel-default">
         <div class="panel-heading">Datos de quién envía en Chile</div>
         <div class="panel-body">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-              <input type="email" class="form-control" ng-model="sourceOpts.email" placeholder="Correo Electrónico" autofocus required ng-pattern="emailRegex" focus-next="rut">
-            </div>
-            <br>
-            <div class="input-group">
-              <span class="input-group-addon">RUT</span>
-              <input id="rut" type="tel" class="form-control" ng-model="sourceOpts.bankAccountHolderId" placeholder="RUT de la cuenta bancaria desde la cual harás la transferencia" required ng-rut focus-next="destPhone">
-            </div>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+            <input name="srcEmail" type="email" class="form-control" ng-model="sourceOpts.email" placeholder="Correo Electrónico" autofocus required ng-pattern="emailRegex" focus-next="rut">
+          </div>
+          <div on-error="srcEmail:pattern:Debes completar este campo con un email válido"></div>
+          <div on-error="srcEmail:required:Debes completar este campo con un email válido"></div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-addon">RUT</span>
+            <input name="srcRut" id="rut" type="tel" class="form-control" ng-model="sourceOpts.bankAccountHolderId" placeholder="RUT de la cuenta bancaria desde la cual harás la transferencia" required ng-rut focus-next="destPhone">
+          </div>
+          <div on-error="srcRut:rut:Debes completar este campo con un RUT válido"></div>
         </div>
       </div>
 
@@ -39,39 +42,45 @@
         <div class="panel-body">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-phone"></i> +57</span>
-            <input id="destPhone" type="tel" class="form-control" ng-model="destinationOpts.phoneNumber" placeholder="Teléfono del destinatario" required phone-number="CO" focus-next="destId">
+            <input name="destPhone" id="destPhone" type="tel" class="form-control" ng-model="destinationOpts.phoneNumber" placeholder="Teléfono del destinatario" required phone-number="CO" focus-next="destId">
           </div>
+          <div on-error="destPhone:phoneNumber:Ingresa un número de teléfono válido"></div>
           <br>
           <div class="input-group">
             <span class="input-group-addon">CC</span>
-            <input id="destId" type="tel" class="form-control" ng-model="destinationOpts.bankAccountHolderId" placeholder="Número de ciudadania del destinatario" required validate-id-colombia="CC" focus-next="destName">
+            <input name="destId" id="destId" type="tel" class="form-control" ng-model="destinationOpts.bankAccountHolderId" placeholder="Número de ciudadania del destinatario" required validate-id-colombia="CC" focus-next="destName">
           </div>
+          <div on-error="destId:validateIdColombia:Ingresa un número válido de cédula de ciudadanía"></div>
           <br>
           <div class="input-group">
             <span class="input-group-addon">Nombre</span>
-            <input id="destName" type="text" class="form-control" ng-model="destinationOpts.bankAccountHolderName" placeholder="Nombre Completo del destinatario" required focus-next="destBankSelect">
+            <input name="destName" id="destName" type="text" class="form-control" ng-model="destinationOpts.bankAccountHolderName" placeholder="Nombre Completo del destinatario" required focus-next="destBankSelect">
           </div>
+          <div on-error="destName:required:Ingresa un nombre de destinatario"></div>
           <br>
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-bank"></i></span>
-            <select id="destBankSelect" class="form-control" ng-model="destinationOpts.bankName" required focus-next="destBankAccType">
+            <select name="destBankSelect" id="destBankSelect" class="form-control" ng-model="destinationOpts.bankName" required focus-next="destBankAccType">
               <option value="">Selecciona el banco de destino</option>
               <option ng-repeat="bank in colombiaBanks" value="{{bank}}">{{bank}}</option>
             </select>
           </div>
+          <div on-error="destBankSelect:required:Selecciona un banco"></div>
           <br>
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-bank"></i></span>
-            <select id="destBankAccType" class="form-control" ng-model="destinationOpts.bankAccountType" required focus-next="destBankAccNumber">
+            <select name="destBankAccType" id="destBankAccType" class="form-control" ng-model="destinationOpts.bankAccountType" required focus-next="destBankAccNumber">
               <option value="">Selecciona el tipo de cuenta</option>
               <option ng-repeat="type in colombiaBankAccountTypes" value="{{type}}">{{type}}</option>
             </select>
           </div>
+          <div on-error="destBankAccType:required:Selecciona un tipo de cuenta"></div>
           <br>
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-hand-o-right"></i></span>
-            <input id="destBankAccNumber" type="tel" class="form-control" ng-model="destinationOpts.bankAccountNumber" placeholder="Número de cuenta bancaria de destino" required focus-next="confirm">
+            <input name="destBankAccNumber" id="destBankAccNumber" type="tel" class="form-control" ng-model="destinationOpts.bankAccountNumber" placeholder="Número de cuenta bancaria de destino" required focus-next="confirm">
           </div>
+          <div on-error="destBankAccNumber:required:Ingresa un número válido de cuenta de destino"></div>
           <br>
         </div>
       </div>
