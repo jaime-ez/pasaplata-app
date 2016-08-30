@@ -1,8 +1,8 @@
 <div class="jumbotron">
-  <img src="images/colombia_flag.svg" alt="Colombia" width="150px" height="150px"><br>
+  <img src="images/colombia_flag.svg" alt="Colombia" width="75px" height="75px"><br>
   <h1>Envia dinero a Colombia</h1>
   <p class="lead">
-    En segundos, con total seguridad y al menor costo
+    Desde cualquier banco en Chile a todo banco en Colombia
   </p>
   <p class="lead" ng-show="marketExchangeRateActual > 0">
     Precio online:
@@ -27,7 +27,7 @@
     <span class="label label-info">Selecciona</span>
   </h4>
   <br>
-  <form role="form" ng-submit="quote()">
+  <form role="form" ng-submit="quote()" name="formQuote">
     <div class="btn-group btn-group-justified" role="group" aria-label="...">
       <div class="btn-group" role="group">
         <button type="button" class="btn btn-default btn-lg" style="white-space:normal" ng-click="selected = 'clp'" focus-next="srcAmnt">Monto a enviar</button>
@@ -40,21 +40,25 @@
       <h3>Ingresa el monto a enviar desde Chile</h3>
       <div class="input-group">
         <span class="input-group-addon">$</span>
-        <input id="srcAmnt" type="tel" ng-model="sourceAmount" placeholder="En pesos Chilenos (CLP)" class="form-control" format-as-currency-code="CLP" max-value="600000" min-value="0">
+        <input name="srcAmnt" id="srcAmnt" type="tel" ng-model="sourceAmount" placeholder="En pesos Chilenos (CLP)" class="form-control" format-as-currency-code="CLP" max-value="600000" min-value="0">
         <span class="input-group-btn">
-          <input type="submit" class="btn btn-primary" value="Cotizar">
+          <input type="submit" class="btn btn-primary" value="Cotizar" ng-disabled="formQuote.$invalid">
         </span>
       </div>
+      <div on-error="srcAmnt:minValue:Valor debe ser mayor a cero"></div>
+      <div on-error="srcAmnt:maxValue:Valor debe ser menor a 600 000"></div>
     </div>
     <div ng-show="selected === 'cop'">
       <h3>Ingresa el monto a recibir en Colombia</h3>
       <div class="input-group">
         <span class="input-group-addon">$</span>
-        <input id="dstAmnt" type="tel" ng-model="destinationAmount" placeholder="En pesos Colombianos (COP)" class="form-control" format-as-currency-code="COP" max-value="2500000" min-value="0">
+        <input name="dstAmnt" id="dstAmnt" type="tel" ng-model="destinationAmount" placeholder="En pesos Colombianos (COP)" class="form-control" format-as-currency-code="COP" max-value="2500000" min-value="0">
         <span class="input-group-btn">
-          <input type="submit" class="btn btn-primary" value="Cotizar">
+          <input type="submit" class="btn btn-primary" value="Cotizar" ng-disabled="formQuote.$invalid">
         </span>
       </div>
+      <div on-error="dstAmnt:minValue:Valor debe ser mayor a cero"></div>
+      <div on-error="dstAmnt:maxValue:Valor debe ser menor a 2 500 000"></div>
     </div>
   </form>
 </div>
@@ -112,8 +116,14 @@
     Cotiza en línea y haz una transferencia bancaria para que envíemos el dinero a destino
   </p>
 
+  <h3>Rapidez</h3>
+  <p>
+    La remesa se ejecuta en minutos a la cuenta del destinatario (aplican restricciones horarias del sistema bancario de Colombia)
+  </p>
+
   <h3>Costo mínimo</h3>
   <p>
+    ¡Mejor que Ria y Western Union!
     Nadie ofrece un mejor precio para envíos desde tu Smartphone, a todo Colombia.
   </p>
 
