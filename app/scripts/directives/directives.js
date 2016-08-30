@@ -52,13 +52,13 @@ angular.module('remittanceApp')
   };
 })
 
-.directive('onError', function() {
+.directive('onError', function(_) {
   return {
     restrict: 'AE',
     link: function($scope, elem, attr) {
 
       /** Usage:
-        The input group must be in a div with class="input-group" in order to use bootstrap classes
+        The input group must be in a parent div with class="input-group" in order to use bootstrap classes
         Fields must have a name property
         on-error must be called with "fieldName:erorrType:message"
         example <div on-error="srcAmnt:required:Debes llenar este campo">
@@ -69,6 +69,7 @@ angular.module('remittanceApp')
       var errorMessage = typeof attr.onError.split(':')[2] === 'undefined' ? 'error' : attr.onError.split(':')[2];
       var formController = elem.inheritedData('$formController');
       var formName = formController.$name;
+      var targetElement = angular.element(document.getElementsByName(fieldName));
 
       function updateError() {
         var field = formController[fieldName];
@@ -87,21 +88,23 @@ angular.module('remittanceApp')
             elem.append('<span id="helpBlock' + errorName + '"' + 'class="help-block" style="">' + errorMessage + '</span>');
           }
           // set bootstrap class
-          if (elem[0].previousElementSibling && elem[0].previousElementSibling.className === 'input-group') {
-            elem[0].previousElementSibling.className = 'input-group has-error';
+          //if (targetElement[0].parentElement && targetElement[0].parentElement.className === 'input-group') {
+          if (targetElement.parent().hasClass('input-group')) {
+            targetElement.parent().removeClass('input-group').addClass('input-group has-error');
           }
 
 
-        } else {
+        } else  if (_.isEmpty(fieldErrors)) {
           // remove message
           if (elem[0].firstElementChild && elem[0].firstElementChild.id === 'helpBlock' + errorName) {
             elem[0].firstElementChild.remove();
           }
           // and reset bootstrap class
-          if (elem[0].previousElementSibling && elem[0].previousElementSibling.className === 'input-group has-error') {
-            elem[0].previousElementSibling.className = 'input-group';
+          if (targetElement.parent().hasClass('input-group has-error')) {
+            targetElement.parent().removeClass('input-group has-error').addClass('input-group');
           }
-
+        } else {
+          return;
         }
       }
 
