@@ -34,11 +34,14 @@ angular.module('remittanceApp')
         Works for Web, iOS (Go button) & Android (Next button) browsers,
       **/
 
-      // for buttons
+      // for buttons on mobile
+      // re-evaluate this because on desktop makes it useless by switching focus all the time
+/*
       elem.bind('click', function(e) {
         e.preventDefault();
         document.querySelector('#' + _.toString(attr.focusNext)).focus();
       });
+*/
 
       //for text input
       elem.bind('keydown', function(e) {
@@ -60,13 +63,16 @@ angular.module('remittanceApp')
       /** Usage:
         The input group must be in a parent div with class="input-group" in order to use bootstrap classes
         Fields must have a name property
-        on-error must be called with "fieldName:erorrType:message"
+        on-error must be called with "fieldName:errorType:message"
+        optional set 4th param to update inmediately and not wait until on blur event
+        on-error must be called with "fieldName:errorType:message:I"
         example <div on-error="srcAmnt:required:Debes llenar este campo">
       **/
 
       var fieldName = attr.onError.split(':')[0];
       var errorName = attr.onError.split(':')[1];
       var errorMessage = typeof attr.onError.split(':')[2] === 'undefined' ? 'error' : attr.onError.split(':')[2];
+      var updateInmediate = typeof attr.onError.split(':')[3] === 'undefined' ? false : true;
       var formController = elem.inheritedData('$formController');
       var formName = formController.$name;
       var targetElement = angular.element(document.getElementsByName(fieldName));
@@ -80,19 +86,31 @@ angular.module('remittanceApp')
         }
 
         if (fieldErrors[errorName]) {
-          // error is activated
-          // add message if not already
-          if (elem[0].firstElementChild && elem[0].firstElementChild.id === 'helpBlock' + errorName) {
-            return;
-          } else {
-            elem.append('<span id="helpBlock' + errorName + '"' + 'class="help-block" style="">' + errorMessage + '</span>');
-          }
-          // set bootstrap class
-          //if (targetElement[0].parentElement && targetElement[0].parentElement.className === 'input-group') {
-          if (targetElement.parent().hasClass('input-group')) {
-            targetElement.parent().removeClass('input-group').addClass('input-group has-error');
-          }
+          var doUpdate = function() {
+            // error is activated
+            // add message if not already
+            if (elem[0].firstElementChild && elem[0].firstElementChild.id === 'helpBlock' + errorName) {
+              return;
+            } else {
+              elem.append('<span id="helpBlock' + errorName + '"' + 'class="help-block" style="">' + errorMessage + '</span>');
+            }
+            // set bootstrap class
+            //if (targetElement[0].parentElement && targetElement[0].parentElement.className === 'input-group') {
+            if (targetElement.parent().hasClass('input-group')) {
+              targetElement.parent().removeClass('input-group').addClass('input-group has-error');
+            }
+          };
 
+          if (updateInmediate) {
+            doUpdate();
+          } else {
+            targetElement.on('blur', function () {
+              // check relevance again
+              if (fieldErrors[errorName]) {
+                doUpdate();
+              }
+            });
+          }
 
         } else  if (_.isEmpty(fieldErrors)) {
           // remove message
