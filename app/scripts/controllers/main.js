@@ -77,7 +77,7 @@ angular.module('remittanceApp')
       $http.post(quoteRemittanceUrl, quoteOpts).then(function successCallback(response) {
         $scope.quotation = response.data.quotation;
         $scope.quotation.uid = response.data.uid;
-        $scope.quotation.expirationTime = response.data.expirationTime
+        $scope.quotation.expirationTime = response.data.expirationTime;
         store.set('quotation', $scope.quotation);
 
       }, function errorCallback() {
