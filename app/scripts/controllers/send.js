@@ -69,8 +69,31 @@ angular.module('remittanceApp')
   };
 
   $scope.create = function() {
-    $scope.quotationConfirmed = true;
+    // TODO handle different states of the process at the view
+    $scope.quotationConfirmed = 'pending';
     // we create the remittance at gatewayd
+    var remittanceOpts = {
+      sourceInfo: {
+        bank_account_holder_id: $scope.sourceOpts.bankAccountHolderId,
+        quotationUid: $scope.quotation.uid,
+        email: $scope.sourceOpts.email
+      },
+      destinationInfo: {
+        bank_account_holder_name: $scope.destinationOpts.bankAccountHolderName,
+        bank_account_holder_id: $scope.destinationOpts.bankAccountHolderId,
+        bank_account_number: $scope.destinationOpts.bankAccountNumber,
+        bank_name: $scope.destinationOpts.bankName,
+        phoneNumber: $scope.destinationOpts.phoneNumber,
+        phoneNumberType: $scope.destinationOpts.phoneNumberType
+      }
+    };
+
+    $http.post(createRemittanceUrl, remittanceOpts).then(function successCallback() {
+      $scope.quotationConfirmed = 'done';
+    }, function errorCallback(err) {
+      console.log(err);
+      $scope.quotationConfirmed = 'error';
+    });
   };
 
   $scope.edit = function() {
