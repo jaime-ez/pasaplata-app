@@ -79,15 +79,15 @@
         <th>Monto a Enviar</th>
         <th>Tasa de Cambio</th>
         <th>Comisión</th>
-        <th>Monto a ser recibido en destino</th>
+        <th>Monto a ser recibido en destino (incluye costos transferencia en colombia)</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>{{quotation.sourceAmount | currency:"CLP $":0}}</td>
+        <td>{{quotation.sourceAmountToBeDeposited | currency:"CLP $":0}}</td>
         <td>COP/CLP {{_.round(quotation.marketExchangeRate, 5)}}</td>
         <td>{{quotation.dinexFeeTotalAmount | currency:"CLP $":0}}</td>
-        <td>{{quotation.destinationAmountMinusDinexFeeAndDepositFeeAndWithdrawalFee | currency:"COP $":0}}</td>
+        <td>{{quotation.destinationAmountToBeReceived | currency:"COP $":0}}</td>
       </tr>
     </tbody>
   </table>
