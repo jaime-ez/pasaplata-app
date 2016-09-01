@@ -158,13 +158,13 @@
         <label class="control-label">Monto a enviar desde Chile</label>
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-usd"></i> CLP</span>
-          <input class="form-control readonlyForm" ng-model="quotation.sourceAmount" readonly>
+          <input class="form-control readonlyForm" ng-model="quotation.sourceAmountToBeDeposited" readonly>
         </div>
         <br>
         <label class="control-label">Monto a recibir en Colombia</label>
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-usd"></i> COP</span>
-          <input class="form-control readonlyForm" ng-model="quotation.destinationAmountMinusDinexFeeAndDepositFeeAndWithdrawalFeesad" readonly>
+          <input class="form-control readonlyForm" ng-model="quotation.destinationAmountToBeReceived" readonly>
         </div>
         <br>
         <label class="control-label">Comisión</label>
@@ -247,8 +247,8 @@
         </tr>
         <tr class="bg-success">
           <th scope="row">Monto a Transferir</th>
-          <td>{{quotation.sourceAmount | currency:"CLP $":0}}
-            <button class="btn btn-xs btn-default pull-right" ngclipboard data-clipboard-text="{{quotation.sourceAmount}}">
+          <td>{{quotation.sourceAmountToBeDeposited | currency:"CLP $":0}}
+            <button class="btn btn-xs btn-default pull-right" ngclipboard data-clipboard-text="{{quotation.sourceAmountToBeDeposited}}">
               <i class="fa fa-copy"></i>
             </button>
           </td>
