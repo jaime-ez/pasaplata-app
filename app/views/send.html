@@ -196,8 +196,15 @@
   </div>
 </div>
 
-<!--After confirming the quotation-->
-<div ng-show="quotationConfirmed">
+<!--Remittance being confirmed-->
+<div ng-show="quotationConfirmed === 'pending'">
+  <div class="alert alert-info" role="alert">
+    Procesando...<i class="fa fa-refresh fa-spin fa-fw"></i>
+  </div>
+</div>
+
+<!--Remittance confirmed success-->
+<div ng-show="quotationConfirmed === 'success'">
   <div class="alert alert-warning" role="alert">
     <h4>
       ¡Excelente! Haz la transferencia bancaria antes de
@@ -256,4 +263,14 @@
       </tbody>
     </table>
   </div>
+</div>
+
+<!--Remittance confirmed failed-->
+<div ng-show="quotationConfirmed === 'error'">
+  <div class="alert alert-danger" role="alert">
+    <h4>Hubo un problema!</h4>
+    <p>{{quotationConfirmedError}}</p>
+  </div>
+  <a class="btn btn-default pull-left" ng-href="#/">Nueva cotización &nbsp;<span class="glyphicon glyphicon-repeat"></span></a>
+  <br>
 </div>

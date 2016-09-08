@@ -89,10 +89,13 @@ angular.module('remittanceApp')
     };
 
     $http.post(createRemittanceUrl, remittanceOpts).then(function successCallback() {
-      $scope.quotationConfirmed = 'done';
+      $scope.quotationConfirmed = 'success';
     }, function errorCallback(err) {
-      console.log(err);
       $scope.quotationConfirmed = 'error';
+      console.log(err);
+      if (err.data.error.indexOf('address') > -1 && err.data.error.indexOf('already exists') > -1) {
+        $scope.quotationConfirmedError = 'La cuenta bancaria de destino ya está registrada con otros datos. Cotiza nuevamente y asegúrate de ingresar la información correcta.';
+      }
     });
   };
 
