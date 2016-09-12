@@ -89,6 +89,7 @@ angular.module('remittanceApp')
         bank_account_holder_id: $scope.destinationOpts.bankAccountHolderId,
         bank_account_number: $scope.destinationOpts.bankAccountNumber,
         bank_name: $scope.destinationOpts.bankName,
+        bank_account_type: $scope.destinationOpts.bankAccountType,
         phoneNumber: $scope.destinationOpts.phoneNumber,
         phoneNumberType: $scope.destinationOpts.phoneNumberType
       }
