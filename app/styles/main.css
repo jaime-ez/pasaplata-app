@@ -45,10 +45,18 @@ body {
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
+  background: url('../images/colombia_camion.png') no-repeat center center;
+  text-shadow: 2px 2px #000000;
 }
 .jumbotron .btn {
   font-size: 21px;
   padding: 14px 24px;
+}
+.jumbotron h1 {
+  color: white;
+}
+.jumbotron p {
+  color: white;
 }
 
 /* Supporting marketing content */
