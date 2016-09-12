@@ -81,7 +81,8 @@ angular.module('remittanceApp')
       sourceInfo: {
         bank_account_holder_id: $scope.sourceOpts.bankAccountHolderId,
         quotationUid: $scope.quotation.uid,
-        email: $scope.sourceOpts.email
+        email: $scope.sourceOpts.email,
+        homeAddress: $scope.sourceOpts.homeAddress
       },
       destinationInfo: {
         bank_account_holder_name: $scope.destinationOpts.bankAccountHolderName,
