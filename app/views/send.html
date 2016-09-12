@@ -31,9 +31,25 @@
           <br>
           <div class="input-group">
             <span class="input-group-addon">RUT</span>
-            <input name="srcRut" id="rut" type="tel" class="form-control" ng-model="sourceOpts.bankAccountHolderId" placeholder="RUT de la cuenta bancaria desde la cual harás la transferencia" required ng-rut focus-next="destPhone">
+            <input name="srcRut" id="rut" type="tel" class="form-control" ng-model="sourceOpts.bankAccountHolderId" placeholder="RUT de la cuenta bancaria desde la cual harás la transferencia" required ng-rut focus-next="srcAddress">
           </div>
           <div on-error="srcRut:rut:Debes completar este campo con un RUT válido"></div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-home"></i></span>
+            <input name="srcAddress" id="srcAddress" type="text" class="form-control" ng-model="sourceOpts.homeAddress.address" placeholder="Ingresa tu dirección" required focus-next="srcComunaSelect">
+          </div>
+          <div on-error="srcAddress:required:Ingresa tu dirección"></div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-addon">Comuna</span>
+            <select name="srcComunaSelect" id="srcComunaSelect" class="form-control" ng-model="sourceOpts.homeAddress.comuna" required focus-next="destPhone">
+              <option value="">Selecciona tu comuna de residencia</option>
+              <option ng-repeat="comuna in chileComunas" value="{{comuna.name}}">{{comuna.name}}</option>
+            </select>
+          </div>
+          <div on-error="srcComunaSelect:required:Selecciona una comuna"></div>
+          <br>
         </div>
       </div>
 
