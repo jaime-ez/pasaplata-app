@@ -40,24 +40,24 @@
       <h3>Ingresa el monto a enviar desde Chile</h3>
       <div class="input-group">
         <span class="input-group-addon">$</span>
-        <input name="srcAmnt" id="srcAmnt" type="tel" ng-model="sourceAmount" placeholder="En pesos Chilenos (CLP)" class="form-control" format-as-currency-code="CLP" max-value="600000" min-value="0">
+        <input name="srcAmnt" id="srcAmnt" type="tel" ng-model="sourceAmount" placeholder="En pesos Chilenos (CLP)" class="form-control" format-as-currency-code="CLP" max-value="600000" min-value="1000">
         <span class="input-group-btn">
           <input type="submit" class="btn btn-primary" value="Cotizar" ng-disabled="formQuote.$invalid">
         </span>
       </div>
-      <div on-error="srcAmnt:minValue:Valor debe ser mayor a cero:I"></div>
+      <div on-error="srcAmnt:minValue:Valor debe ser mayor a 1000:I"></div>
       <div on-error="srcAmnt:maxValue:Valor debe ser menor a 600 000:I"></div>
     </div>
     <div ng-show="selected === 'cop'">
       <h3>Ingresa el monto a recibir en Colombia</h3>
       <div class="input-group">
         <span class="input-group-addon">$</span>
-        <input name="dstAmnt" id="dstAmnt" type="tel" ng-model="destinationAmount" placeholder="En pesos Colombianos (COP)" class="form-control" format-as-currency-code="COP" max-value="2500000" min-value="0">
+        <input name="dstAmnt" id="dstAmnt" type="tel" ng-model="destinationAmount" placeholder="En pesos Colombianos (COP)" class="form-control" format-as-currency-code="COP" max-value="2500000" min-value="2000">
         <span class="input-group-btn">
           <input type="submit" class="btn btn-primary" value="Cotizar" ng-disabled="formQuote.$invalid">
         </span>
       </div>
-      <div on-error="dstAmnt:minValue:Valor debe ser mayor a cero:I"></div>
+      <div on-error="dstAmnt:minValue:Valor debe ser mayor a 2000:I"></div>
       <div on-error="dstAmnt:maxValue:Valor debe ser menor a 2 500 000:I"></div>
     </div>
   </form>
