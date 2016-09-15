@@ -1,7 +1,5 @@
 'use strict';
 
-var createRemittanceUrl = 'https://gateway.test.dinex.cl/public/remittance/create';
-
 /**
  * @ngdoc function
  * @name remittanceApp.controller:SendCtrl
@@ -10,7 +8,7 @@ var createRemittanceUrl = 'https://gateway.test.dinex.cl/public/remittance/creat
  * Controller of the remittanceApp
  */
 angular.module('remittanceApp')
-  .controller('SendCtrl', function ($scope, $http, store, $location, $window, _, COLOMBIA_BANKS, COLOMBIA_BANK_ACCOUNT_TYPES, EMAIL_REGEX, ADD_DASH_RUT, CHILE_COMUNAS) {
+  .controller('SendCtrl', function ($scope, $http, store, $location, $window, _, COLOMBIA_BANKS, COLOMBIA_BANK_ACCOUNT_TYPES, EMAIL_REGEX, ADD_DASH_RUT, CHILE_COMUNAS, OPTIONS) {
   //constants available in scope
   $scope._ = _;
   $scope.colombiaBanks = COLOMBIA_BANKS;
@@ -95,7 +93,7 @@ angular.module('remittanceApp')
       }
     };
 
-    $http.post(createRemittanceUrl, remittanceOpts).then(function successCallback() {
+    $http.post(OPTIONS.createRemittanceUrl, remittanceOpts).then(function successCallback() {
       $scope.quotationConfirmed = 'success';
     }, function errorCallback(err) {
       $scope.quotationConfirmed = 'error';

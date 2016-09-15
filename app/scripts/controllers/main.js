@@ -1,7 +1,5 @@
 'use strict';
 
-var quoteRemittanceUrl = 'https://gateway.test.dinex.cl/public/remittance/quote';
-
 /**
  * @ngdoc function
  * @name remittanceApp.controller:MainCtrl
@@ -10,7 +8,7 @@ var quoteRemittanceUrl = 'https://gateway.test.dinex.cl/public/remittance/quote'
  * Controller of the remittanceApp
  */
 angular.module('remittanceApp')
-  .controller('MainCtrl', function ($scope, $http, store, _) {
+  .controller('MainCtrl', function ($scope, $http, store, _, OPTIONS) {
   // make lodash available
   $scope._ = _;
 
@@ -35,7 +33,7 @@ angular.module('remittanceApp')
     };
 
     // this sohould be a service
-    $http.post(quoteRemittanceUrl, basicQuotation).then(function successCallback(response) {
+    $http.post(OPTIONS.quoteRemittanceUrl, basicQuotation).then(function successCallback(response) {
       // we present market exchange rate
       // TODO: change to marketExchangeRateActual after fixing remittancemaker response
       $scope.marketExchangeRateActual = _.round(response.data.quotation.marketExchangeRate, 5);
@@ -74,7 +72,7 @@ angular.module('remittanceApp')
     }
 
     if (quoteOpts) {
-      $http.post(quoteRemittanceUrl, quoteOpts).then(function successCallback(response) {
+      $http.post(OPTIONS.quoteRemittanceUrl, quoteOpts).then(function successCallback(response) {
         $scope.quotation = response.data.quotation;
         $scope.quotation.uid = response.data.uid;
         $scope.quotation.expirationTime = response.data.expirationTime;
