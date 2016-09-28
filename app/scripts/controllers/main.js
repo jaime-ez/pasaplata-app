@@ -34,9 +34,18 @@ angular.module('remittanceApp')
 
     // this sohould be a service
     $http.post(OPTIONS.quoteRemittanceUrl, basicQuotation).then(function successCallback(response) {
-      // we present market exchange rate
-      // TODO: change to marketExchangeRateActual after fixing remittancemaker response
-      $scope.marketExchangeRateActual = _.round(response.data.quotation.marketExchangeRate, 5);
+      // check that there is enough depth in the market
+      if (response.data.quotation.quotation.incomplete || response.data.quotation.reverseQuotation.incomplete) {
+        console.error('insufficient market depth to fulfill orders');
+        $scope.marketExchangeRateActual = -1;
+        setTimeout(function(){
+          $scope.reset();
+          $scope.$broadcast('timer-add-cd-seconds', 10);
+        }, 10000);
+      } else {
+        // we present market exchange rate
+        $scope.marketExchangeRateActual = _.round(response.data.quotation.marketExchangeRate, 5);
+      }
 
     }, function errorCallback() {
       $scope.marketExchangeRateActual = -1;
