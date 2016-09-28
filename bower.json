@@ -19,7 +19,8 @@
     "angular-rut": "~1.0.1",
     "format-as-currency-code": "~1.0.1",
     "ngPhone": "~0.0.2",
-    "open-sans-fontface": "~1.4.2"
+    "open-sans-fontface": "~1.4.2",
+    "bootstrap-material-design": "v0.5.10"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
