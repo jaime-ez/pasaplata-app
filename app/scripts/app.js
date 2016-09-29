@@ -22,7 +22,8 @@ angular
     'ngclipboard',
     'platanus.rut',
     'formatAsCurrencyCode',
-    'ng-phone'
+    'ng-phone',
+    'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
     $routeProvider
