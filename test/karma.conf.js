@@ -42,6 +42,10 @@ module.exports = function(config) {
       'bower_components/angular-rut/dist/angular-rut.min.js',
       'bower_components/format-as-currency-code/dist/format-as-currency-code.min.js',
       'bower_components/ngPhone/ng-phone.js',
+      'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
+      'bower_components/bootstrap-material-design/dist/js/material.js',
+      'bower_components/bootstrap-material-design/dist/js/ripples.js',
+      'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
