@@ -44,7 +44,7 @@
     </p>
   </div>
   <!--Selector bancos-->
-  <div class="box text-center">
+  <div class="well box text-center" ng-hide="formQuote.$invalid">
     <div>
       <a href="clptocop.html">
         <img src="images/bancoestado-clp.png"/>
@@ -116,34 +116,37 @@
 </div>
 
 <div class="row marketing" ng-hide="quotation">
-  <h3>Directo desde tu cuenta bancaria a la del destinatario en Colombia</h3>
-  <p>
-    Cotiza en línea y haz una transferencia bancaria para que envíemos el dinero a destino
-  </p>
-
-  <h3>Rapidez</h3>
-  <p>
-    La remesa se ejecuta en minutos a la cuenta del destinatario (aplican restricciones horarias del sistema bancario de Colombia)
-  </p>
-
-  <h3>Costo mínimo</h3>
-  <p>
-    ¡Mejor que Ria y Western Union!
-    Nadie ofrece un mejor precio para envíos desde tu Smartphone, a todo Colombia.
-  </p>
-
-  <h3>Total seguridad</h3>
-  <p>
-    Los envíos se ejecutan en minutos, de lo contrario te devolvemos la transferencia de inmediato.
-  </p>
-
-  <h3>Total transparencia</h3>
-  <p>
-    Siempre sabes cuanto te costará el envío, cual es la tasa de cambio y las comisiones.
-  </p>
-
-  <h3>¡Abierto las 24 horas, desde todas partes!</h3>
-  <p>
-    No más filas ni viajes a la oficina de remesas. Ahora directo desde tu Smartphone.
-  </p>
+  <uib-accordion close-others=false>
+    <div uib-accordion-group class="panel-default accordeon" heading="Envío rápido y directo">
+      <h4>Directo desde tu cuenta bancaria a la del destinatario en Colombia</h4>
+      <p>
+        Cotiza en línea y haz una transferencia bancaria para que envíemos el dinero a destino
+      </p>
+      <h4>Rapidez</h4>
+      <p>
+        La remesa se ejecuta en minutos a la cuenta del destinatario (aplican restricciones horarias del sistema bancario de Colombia)
+      </p>
+    </div>
+    <div uib-accordion-group class="panel-default accordeon" heading="Costo mínimo">
+      <h4>Costo mínimo</h4>
+      <p>
+        ¡Mejor que Ria y Western Union!
+        Nadie ofrece un mejor precio para envíos desde tu Smartphone, a todo Colombia.
+      </p>
+      <h4>Total seguridad</h4>
+      <p>
+        Los envíos se ejecutan en minutos, de lo contrario te devolvemos la transferencia de inmediato.
+      </p>
+    </div>
+    <div uib-accordion-group class="panel-default accordeon" heading="Seguridad y Transparencia">
+      <h4>Total transparencia</h4>
+      <p>
+        Siempre sabes cuanto te costará el envío, cual es la tasa de cambio y las comisiones.
+      </p>
+      <h4>¡Abierto las 24 horas, desde todas partes!</h4>
+      <p>
+        No más filas ni viajes a la oficina de remesas. Ahora directo desde tu Smartphone.
+      </p>
+    </div>
+  </uib-accordion>
 </div>

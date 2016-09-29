@@ -8,12 +8,13 @@
 body {
   padding: 0;
   font-family: Open Sans;
-  background-color: white;
+  background-color: #f4f4f4;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .marketing,
 .footer {
+  padding-top: 40px;
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -163,7 +164,6 @@ form#formQuote {
   height: 112px;
   border-radius: 4px;
   background-color: #fafafa;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   margin: 40px auto;
   padding-top: 10px;
 }
@@ -198,3 +198,24 @@ form#formQuote {
   padding-top: 10px;
 }
 
+.accordeon {
+  border-radius: 4px;
+  border: solid 1px #00d19a;
+}
+
+.panel-title {
+  font-family: Open Sans;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  color: #00bd8a;
+}
+
+.panel-heading {
+  background-color: white!important;
+}
+
+.has-error {
+  padding-top: 5px;
+}
