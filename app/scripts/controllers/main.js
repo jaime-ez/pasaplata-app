@@ -16,7 +16,7 @@ angular.module('remittanceApp')
   $scope.reset = function () {
 
     // define variables
-    $scope.selected = '';
+    $scope.selected = 'clp';
     $scope.sourceCurrency = 'CLP';
     $scope.sourceAmount = '';
     $scope.destinationCurrency = 'COP';

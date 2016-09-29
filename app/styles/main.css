@@ -7,10 +7,11 @@
 
 body {
   padding: 0;
+  font-family: Open Sans;
+  background-color: white;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
 .marketing,
 .footer {
   padding-left: 15px;
@@ -18,10 +19,12 @@ body {
 }
 
 /* Custom page header */
+/*
 .header {
   border-bottom: 1px solid #e5e5e5;
   margin-bottom: 10px;
 }
+*/
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
   margin-top: 0;
@@ -86,3 +89,112 @@ body {
 input[readonly].readonlyForm {
   background-color: white;
 }
+
+/*New Pasaplata design*/
+.header {
+  height: 56px;
+  background-color: #00bd8a;
+}
+
+.pasaplata-logo {
+  padding-top: 12px;
+}
+
+.container {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.bg-plata {
+  height: 297px;
+  background-color: #00d19a;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.quote-title {
+  padding-top: 33px;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  color: #ffffff;
+}
+
+input#srcAmnt {
+  height: 65px;
+  font-size: 48px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  color: #ffffff;
+  margin: 0 auto;
+}
+
+input#dstAmnt {
+  height: 65px;
+  font-size: 48px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  color: #ffffff;
+  margin: 0 auto;
+}
+
+form#formQuote {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.quote-market-exchange-rate {
+  padding-top: 13px;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  color: #00936d;
+}
+
+.box {
+  width: 296px;
+  height: 112px;
+  border-radius: 4px;
+  background-color: #fafafa;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  margin: 40px auto;
+  padding-top: 10px;
+}
+
+.arrow-right {
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.bank-source-legend {
+  float: left;
+  font-size: 10px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #8b8b8b;
+  padding-left: 30px;
+  padding-top: 10px;
+}
+
+.bank-destination-legend {
+  float: right;
+  font-size: 10px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #8b8b8b;
+  padding-right: 30px;
+  padding-top: 10px;
+}
+
