@@ -8,7 +8,7 @@
         <img class="circle bank-selector-item-img" src="images/bancos_chile/{{item}}.png" alt="icon">
       </div>
       <div class="row-content bank-selector-item-text">
-        {{item | truncate : 16 : '...'}}
+        {{item | lowercase | ucfirst | truncate : 16 : '...'}}
         <input class="bank-selector-radio" type="radio" ng-model="$ctrl.selected.item" value="{{item}}">
       </div>
     </div>
