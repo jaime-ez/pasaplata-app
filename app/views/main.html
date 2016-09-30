@@ -46,13 +46,13 @@
   <!--Selector bancos-->
   <div class="well box text-center" ng-hide="formQuote.$invalid">
     <div>
-      <img ng-click="selectChileBankModal()" src="images/bancos_chile/BANCOESTADO.png"/>
+      <img ng-click="selectChileBankModal()" src="images/bancos_chile/{{selectedBankChile}}.png"/>
       <img src="images/arrow-right.svg" class="arrow-right"/>
-      <img ng-click="selectColombiaBankModal()" src="images/bancos_colombia/Bancolombia.png"/>
+      <img ng-click="selectColombiaBankModal()" src="images/bancos_colombia/{{selectedBankColombia}}.png"/>
     </div>
     <div>
-      <span class="bank-source-legend">Desde: <span class="dot-line">BancoEstado</span></span>
-      <span class="bank-destination-legend">Hacia: <span class="dot-line">BanColombia</span></span>
+      <span class="bank-source-legend">Desde: {{selectedBankChile | lowercase | ucfirst}}</span>
+      <span class="bank-destination-legend">Hacia: {{selectedBankColombia}}</span>
     </div>
   </div>
 </div>
