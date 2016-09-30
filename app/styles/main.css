@@ -14,7 +14,7 @@ body {
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .marketing,
 .footer {
-  padding-top: 40px;
+  padding-top: 60px;
   padding-left: 15px;
   padding-right: 15px;
 }
