@@ -8,7 +8,7 @@
  * Controller of the remittanceApp
  */
 angular.module('remittanceApp')
-  .controller('MainCtrl', function ($scope, $http, store, _, OPTIONS) {
+  .controller('MainCtrl', function ($scope, $http, store, $uibModal, _, OPTIONS, COLOMBIA_BANKS, CHILE_BANKS) {
   // make lodash available
   $scope._ = _;
 
@@ -93,4 +93,41 @@ angular.module('remittanceApp')
       });
     }
   };
+
+  $scope.selectChileBankModal = function () {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      component: 'bankSelectorChile',
+      resolve: {
+        items: function () {
+          return CHILE_BANKS;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selectedBank = selectedItem;
+    }, function () {
+      // modal closed
+    });
+  };
+
+  $scope.selectColombiaBankModal = function () {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      component: 'bankSelectorColombia',
+      resolve: {
+        items: function () {
+          return COLOMBIA_BANKS;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selectedBank = selectedItem;
+    }, function () {
+      // modal closed
+    });
+  };
+
 });

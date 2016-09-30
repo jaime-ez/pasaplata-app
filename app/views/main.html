@@ -46,13 +46,9 @@
   <!--Selector bancos-->
   <div class="well box text-center" ng-hide="formQuote.$invalid">
     <div>
-      <a href="clptocop.html">
-        <img src="images/bancoestado-clp.png"/>
-      </a>
+      <img ng-click="selectChileBankModal()" src="images/bancoestado-clp.png"/>
       <img src="images/arrow-right.svg" class="arrow-right"/>
-      <a href="clptocop.html">
-        <img src="images/bancolombia-cop.png"/>
-      </a>
+      <img ng-click="selectColombiaBankModal()" src="images/bancolombia-cop.png"/>
     </div>
     <div>
       <span class="bank-source-legend">Desde: <span class="dot-line">BancoEstado</span></span>
