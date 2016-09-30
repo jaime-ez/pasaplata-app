@@ -23,7 +23,8 @@ angular
     'platanus.rut',
     'formatAsCurrencyCode',
     'ng-phone',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'angular.filter'
   ])
   .config(function ($routeProvider) {
     $routeProvider
