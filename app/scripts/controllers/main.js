@@ -23,6 +23,8 @@ angular.module('remittanceApp')
     $scope.destinationAmount = '';
     $scope.quotation = false;
     $scope.marketExchangeRateActual = 0;
+    $scope.selectedBankChile = CHILE_BANKS[8];
+    $scope.selectedBankColombia = 'seleccionar';
     // clear past quotations
     store.remove('quotation');
 
@@ -106,7 +108,7 @@ angular.module('remittanceApp')
     });
 
     modalInstance.result.then(function (selectedItem) {
-      $scope.selectedBank = selectedItem;
+      $scope.selectedBankChile = selectedItem;
     }, function () {
       // modal closed
     });
@@ -124,7 +126,9 @@ angular.module('remittanceApp')
     });
 
     modalInstance.result.then(function (selectedItem) {
-      $scope.selectedBank = selectedItem;
+      $scope.selectedBankColombia = selectedItem;
+      store.set('destinationOpts', {bankName: $scope.selectedBankColombia});
+      $scope.quote();
     }, function () {
       // modal closed
     });
