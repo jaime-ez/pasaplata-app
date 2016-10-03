@@ -17,6 +17,7 @@
 
 .bank-selector-item {
   height: 56px;
+  padding-right: 0px !important;
 }
 
 .bank-selector-item-img {

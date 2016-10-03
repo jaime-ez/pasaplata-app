@@ -8,8 +8,12 @@
         <img class="circle bank-selector-item-img" src="images/bancos_chile/{{item}}.png" alt="icon">
       </div>
       <div class="row-content bank-selector-item-text">
-        {{item | lowercase | ucfirst | truncate : 16 : '...'}}
-        <input class="bank-selector-radio" type="radio" ng-model="$ctrl.selected.item" value="{{item}}" ng-change="$ctrl.ok()">
+        <div class="radio radio-primary">
+          {{item | lowercase | ucfirst | truncate : 16 : '...'}}
+          <label class="bank-selector-radio">
+            <input type="radio" ng-model="$ctrl.selected.item" value="{{item}}" ng-change="$ctrl.ok()">
+          </label>
+        </div>
       </div>
     </div>
   Seleccionaste: <b>{{ $ctrl.selected.item }}</b>

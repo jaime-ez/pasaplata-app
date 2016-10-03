@@ -22,7 +22,8 @@
     "open-sans-fontface": "~1.4.2",
     "bootstrap-material-design": "v0.5.10",
     "angular-bootstrap": "~2.1.4",
-    "angular-filter": "~0.5.11"
+    "angular-filter": "~0.5.11",
+    "arrive": "~2.3.1"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
