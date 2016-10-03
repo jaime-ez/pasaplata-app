@@ -91,6 +91,9 @@ body {
 .marketing p + h4 {
   margin-top: 28px;
 }
+.marketing .panel-heading {
+  background-color: white!important;
+}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
@@ -240,9 +243,6 @@ form#formQuote {
   color: #00bd8a;
 }
 
-.panel-heading {
-  background-color: white!important;
-}
 
 .has-error {
   padding-top: 5px;
