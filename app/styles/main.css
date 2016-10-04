@@ -255,3 +255,15 @@ form#formQuote {
 .form-control:focus#dstAmnt, .form-control.focus {
   background-image: linear-gradient(#eee, #eee), linear-gradient(#ffffff, #ffffff) !important;
 }
+
+.btn-clipboard {
+  margin: 0px;
+  padding: 0px;
+}
+
+.transfer-amount {
+  font-size: 14px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+}
