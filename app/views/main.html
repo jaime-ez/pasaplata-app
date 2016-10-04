@@ -60,6 +60,18 @@
       <span class="bank-destination-legend">Hacia: {{selectedBankColombia}}</span>
     </div>
   </div>
+
+  <div ng-show="quotation === 'pending'">
+    <div class="col-xs-12">
+      <div class="alert alert-info" role="alert">
+        <h4>
+          <i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
+          Cotizando...
+        </h4>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <div class="alert alert-danger" role="alert" ng-show="marketExchangeRateActual === -1">
@@ -67,15 +79,6 @@
   <span class="sr-only">Error:</span>
   Servicio momentanemamente no disponible... reintentando en
   <timer interval="1000" countdown="10" language="es" class="ng-binding">{{secondUnit}}</timer>
-</div>
-
-<div ng-show="quotation === 'pending'">
-  <div class="alert alert-info" role="alert">
-    <h4>
-      <i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
-      Cotizando...
-    </h4>
-  </div>
 </div>
 
 <div class="quotation-response" ng-if="quotation">
