@@ -1,4 +1,4 @@
-<div ng-show="!quotation" class="bg-plata" ng-hide="marketExchangeRateActual === -1">
+<div class="bg-plata" ng-hide="marketExchangeRateActual === -1">
   <form role="form" ng-submit="quote()" name="formQuote" id="formQuote">
 <!--
     <div class="btn-group btn-group-justified" role="group" aria-label="...">
@@ -78,31 +78,21 @@
   </div>
 </div>
 
-<div class="table" ng-show="quotation && quotation != 'failed' && quotation != 'pending'">
-  <table class="table table-bordered">
-    <thead class="thead-default">
-      <tr>
-        <th>Monto a Enviar</th>
-        <th>Tasa de Cambio</th>
-        <th>Comisión</th>
-        <th>Monto a ser recibido en destino (incluye costos transferencia en colombia)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{quotation.sourceAmountToBeDeposited | currency:"CLP $":0}}</td>
-        <td>COP/CLP {{_.round(quotation.marketExchangeRate, 5)}}</td>
-        <td>{{quotation.dinexFeeTotalAmount | currency:"CLP $":0}}</td>
-        <td>{{quotation.destinationAmountToBeReceived | currency:"COP $":0}}</td>
-      </tr>
-    </tbody>
-  </table>
-  <row class="col-md-6 text-center">
-    <p><a class="btn btn-default" ng-click="reset()">Cotizar de nuevo &nbsp;<span class="glyphicon glyphicon-repeat"></span></a></p>
-  </row>
-  <row class="col-md-6 text-center">
-    <p><a class="btn btn-lg btn-success" ng-href="#/send" focus-here>Quiero enviar! &nbsp;<span class="glyphicon glyphicon-ok"></span></a></p>
-  </row>
+<div class="quotation-response" ng-if="quotation">
+  <div class="panel panel-default" ng-show="quotation && quotation != 'failed' && quotation != 'pending'" id="quotationResponse">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Detalle cotización</div>
+      <ul class="list-group">
+      <li class="list-group-item">Monto a Enviar <span class="details">{{quotation.sourceAmountToBeDeposited | currency:"CLP $":0}}</span></li>
+      <li class="list-group-item">Tasa de Cambio <span class="details">COP/CLP {{_.round(quotation.marketExchangeRate, 5)}}</span></li>
+      <li class="list-group-item">Comisión <span class="details">{{quotation.dinexFeeTotalAmount | currency:"CLP $":0}}</span></li>
+        <hr>
+      <li class="list-group-item result">Monto a recibir <span class="details">{{quotation.destinationAmountToBeReceived | currency:"COP $":0}}</span></li>
+    </ul>
+    <div class="panel-footer col-xs-12 quotation-response">
+      <a class="btn-lg btn-block btn-raised" ng-href="#/send" focus-here>Quiero enviar! &nbsp;<span class="glyphicon glyphicon-ok"></span></a>
+    </div>
+  </div>
 </div>
 
 <div ng-show="quotation === 'failed'">
