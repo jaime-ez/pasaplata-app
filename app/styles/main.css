@@ -247,3 +247,11 @@ form#formQuote {
 .has-error {
   padding-top: 5px;
 }
+
+.form-control:focus#srcAmnt, .form-control.focus {
+  background-image: linear-gradient(#eee, #eee), linear-gradient(#ffffff, #ffffff) !important;
+}
+
+.form-control:focus#dstAmnt, .form-control.focus {
+  background-image: linear-gradient(#eee, #eee), linear-gradient(#ffffff, #ffffff) !important;
+}
