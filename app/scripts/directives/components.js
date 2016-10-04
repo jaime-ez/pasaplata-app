@@ -8,7 +8,7 @@
  */
 angular.module('remittanceApp')
 .component('bankSelectorChile', {
-  templateUrl: './views/modals/bank_selector_chile.html',
+  templateUrl: './views/bank_selector_chile.html',
   bindings: {
     resolve: '<',
     close: '&',
@@ -35,7 +35,7 @@ angular.module('remittanceApp')
 })
 
 .component('bankSelectorColombia', {
-  templateUrl: './views/modals/bank_selector_colombia.html',
+  templateUrl: './views/bank_selector_colombia.html',
   bindings: {
     resolve: '<',
     close: '&',
