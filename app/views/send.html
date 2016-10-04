@@ -26,20 +26,20 @@
             <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
             <input name="srcEmail" type="email" class="form-control" ng-model="sourceOpts.email" placeholder="Correo Electrónico" autofocus required ng-pattern="emailRegex" focus-next="rut">
           </div>
-          <div on-error="srcEmail:pattern:Debes completar este campo con un email válido"></div>
-          <div on-error="srcEmail:required:Debes completar este campo con un email válido"></div>
+          <div class="input-group has-error" on-error="srcEmail:pattern:Debes completar este campo con un email válido"></div>
+          <div class="input-group has-error" on-error="srcEmail:required:Debes completar este campo con un email válido"></div>
           <br>
           <div class="input-group">
             <span class="input-group-addon">RUT</span>
             <input name="srcRut" id="rut" type="tel" class="form-control" ng-model="sourceOpts.bankAccountHolderId" placeholder="RUT de la cuenta bancaria desde la cual harás la transferencia" required ng-rut focus-next="srcAddress">
           </div>
-          <div on-error="srcRut:rut:Debes completar este campo con un RUT válido"></div>
+          <div class="input-group has-error" on-error="srcRut:rut:Debes completar este campo con un RUT válido"></div>
           <br>
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-home"></i></span>
             <input name="srcAddress" id="srcAddress" type="text" class="form-control" ng-model="sourceOpts.homeAddress.address" placeholder="Ingresa tu dirección" required focus-next="srcComunaSelect">
           </div>
-          <div on-error="srcAddress:required:Ingresa tu dirección"></div>
+          <div class="input-group has-error" on-error="srcAddress:required:Ingresa tu dirección"></div>
           <br>
           <div class="input-group">
             <span class="input-group-addon">Comuna</span>
@@ -48,7 +48,7 @@
               <option ng-repeat="comuna in chileComunas" value="{{comuna.name}}">{{comuna.name}}</option>
             </select>
           </div>
-          <div on-error="srcComunaSelect:required:Selecciona una comuna"></div>
+          <div class="input-group has-error" on-error="srcComunaSelect:required:Selecciona una comuna"></div>
           <br>
         </div>
       </div>
@@ -60,19 +60,19 @@
             <span class="input-group-addon"><i class="fa fa-phone"></i> +57</span>
             <input name="destPhone" id="destPhone" type="tel" class="form-control" ng-model="destinationOpts.phoneNumber" placeholder="Teléfono del destinatario" required phone-number="CO" focus-next="destId">
           </div>
-          <div on-error="destPhone:phoneNumber:Ingresa un número de teléfono válido"></div>
+          <div class="input-group has-error" on-error="destPhone:phoneNumber:Ingresa un número de teléfono válido"></div>
           <br>
           <div class="input-group">
             <span class="input-group-addon">CC</span>
             <input name="destId" id="destId" type="tel" class="form-control" ng-model="destinationOpts.bankAccountHolderId" placeholder="Número de ciudadania del destinatario" required validate-id-colombia="CC" focus-next="destName">
           </div>
-          <div on-error="destId:validateIdColombia:Ingresa un número válido de cédula de ciudadanía"></div>
+          <div class="input-group has-error" on-error="destId:validateIdColombia:Ingresa un número válido de cédula de ciudadanía"></div>
           <br>
           <div class="input-group">
             <span class="input-group-addon">Nombre</span>
             <input name="destName" id="destName" type="text" class="form-control" ng-model="destinationOpts.bankAccountHolderName" placeholder="Nombre Completo del destinatario" required focus-next="destBankSelect">
           </div>
-          <div on-error="destName:required:Ingresa un nombre de destinatario"></div>
+          <div class="input-group has-error" on-error="destName:required:Ingresa un nombre de destinatario"></div>
           <br>
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-bank"></i></span>
@@ -81,7 +81,7 @@
               <option ng-repeat="bank in colombiaBanks" value="{{bank}}">{{bank}}</option>
             </select>
           </div>
-          <div on-error="destBankSelect:required:Selecciona un banco"></div>
+          <div class="input-group has-error" on-error="destBankSelect:required:Selecciona un banco"></div>
           <br>
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-bank"></i></span>
@@ -90,13 +90,13 @@
               <option ng-repeat="type in colombiaBankAccountTypes" value="{{type}}">{{type}}</option>
             </select>
           </div>
-          <div on-error="destBankAccType:required:Selecciona un tipo de cuenta"></div>
+          <div class="input-group has-error" on-error="destBankAccType:required:Selecciona un tipo de cuenta"></div>
           <br>
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-hand-o-right"></i></span>
             <input name="destBankAccNumber" id="destBankAccNumber" type="tel" class="form-control" ng-model="destinationOpts.bankAccountNumber" placeholder="Número de cuenta bancaria de destino" required focus-next="confirm">
           </div>
-          <div on-error="destBankAccNumber:required:Ingresa un número válido de cuenta de destino"></div>
+          <div class="input-group has-error" on-error="destBankAccNumber:required:Ingresa un número válido de cuenta de destino"></div>
           <br>
         </div>
       </div>
