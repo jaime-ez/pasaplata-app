@@ -48,11 +48,11 @@ angular
         controller: 'TermsCtrl',
         controllerAs: 'terms'
       })
-      .when('/views/bank_selector_chile', {
-        templateUrl: 'views/bank_selector_chile.html'
+      .when('/views/modals/bank_selector_chile', {
+        templateUrl: 'views/modals/bank_selector_chile.html'
       })
-      .when('/views/bank_selector_colombia', {
-        templateUrl: 'views/bank_selector_colombia.html'
+      .when('/views/modals/bank_selector_colombia', {
+        templateUrl: 'views/modals/bank_selector_colombia.html'
       })
       .otherwise({
         redirectTo: '/'
