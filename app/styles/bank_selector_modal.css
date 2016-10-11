@@ -1,0 +1,40 @@
+/*Bank selector modal css*/
+.bank-selector-header {
+  height: 40px;
+  border-radius: 4px;
+  background-color: #fafafa;
+  padding-top: 11px !important;
+}
+
+.bank-selector-title {
+  height: 18px;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #565656;
+}
+
+.bank-selector-item {
+  height: 56px;
+  padding-right: 0px !important;
+}
+
+.bank-selector-item-img {
+  width: 40px !important;
+  height: 40px !important;
+  object-fit: contain;
+  display: inline !important;
+}
+
+.bank-selector-item-text {
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #8b8b8b;
+}
+
+.bank-selector-radio {
+  float: right;
+}

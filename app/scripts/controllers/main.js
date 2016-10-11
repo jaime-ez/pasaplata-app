@@ -8,7 +8,7 @@
  * Controller of the remittanceApp
  */
 angular.module('remittanceApp')
-  .controller('MainCtrl', function ($scope, $http, store, _, OPTIONS) {
+  .controller('MainCtrl', function ($scope, $http, store, $uibModal, _, OPTIONS, COLOMBIA_BANKS, CHILE_BANKS) {
   // make lodash available
   $scope._ = _;
 
@@ -16,13 +16,15 @@ angular.module('remittanceApp')
   $scope.reset = function () {
 
     // define variables
-    $scope.selected = '';
+    $scope.selected = 'clp';
     $scope.sourceCurrency = 'CLP';
     $scope.sourceAmount = '';
     $scope.destinationCurrency = 'COP';
     $scope.destinationAmount = '';
     $scope.quotation = false;
     $scope.marketExchangeRateActual = 0;
+    $scope.selectedBankChile = CHILE_BANKS[8];
+    $scope.selectedBankColombia = 'seleccionar';
     // clear past quotations
     store.remove('quotation');
 
@@ -93,4 +95,43 @@ angular.module('remittanceApp')
       });
     }
   };
+
+  $scope.selectChileBankModal = function () {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      component: 'bankSelectorChile',
+      resolve: {
+        items: function () {
+          return CHILE_BANKS;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selectedBankChile = selectedItem;
+    }, function () {
+      // modal closed
+    });
+  };
+
+  $scope.selectColombiaBankModal = function () {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      component: 'bankSelectorColombia',
+      resolve: {
+        items: function () {
+          return COLOMBIA_BANKS;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selectedBankColombia = selectedItem;
+      store.set('destinationOpts', {bankName: $scope.selectedBankColombia});
+      $scope.quote();
+    }, function () {
+      // modal closed
+    });
+  };
+
 });

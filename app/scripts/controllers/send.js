@@ -40,7 +40,7 @@ angular.module('remittanceApp')
       phoneNumberType: '',
       bankAccountHolderId: '',
       bankAccountHolderName: '',
-      bankName: '',
+      bankName: store.get('destinationOpts').bankName,
       bankAccountType: '',
       bankAccountNumber: ''
     };

@@ -60,7 +60,7 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= yeoman.app %>/{,*/}*.html',
+          '<%= yeoman.app %>/{,*/,*/**/}*.html',
           '<%= yeoman.app %>/config.js',
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
@@ -232,7 +232,9 @@ module.exports = function (grunt) {
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
           '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-          '<%= yeoman.dist %>/styles/fonts/*'
+          '<%= yeoman.dist %>/styles/fonts/*',
+          '!<%= yeoman.dist %>/images/bancos_chile/*',
+          '!<%= yeoman.dist %>/images/bancos_colombia/*'
         ]
       }
     },
@@ -304,7 +306,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/images',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
+          src: ['{,*/}*.{png,jpg,jpeg,gif}', '!bancos_chile/*', '!bancos_colombia/*'],
           dest: '<%= yeoman.dist %>/images'
         }]
       }
@@ -380,10 +382,18 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>',
           dest: '<%= yeoman.dist %>',
           src: [
-            '*.{ico,png,txt}',
+            '*.{ico,png,txt,js,json,xml}',
             '*.html',
             'images/{,*/}*.{webp}',
             'styles/fonts/{,*/}*.*'
+          ]
+        }, {
+          expand: true,
+          cwd: '<%= yeoman.app %>/images',
+          dest: '<%= yeoman.dist %>/images',
+          src: [
+            'bancos_chile/*',
+            'bancos_colombia/*'
           ]
         }, {
           expand: true,
@@ -400,7 +410,11 @@ module.exports = function (grunt) {
           cwd: 'bower_components/components-font-awesome/',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
-
+        }, {
+          expand: true,
+          cwd: 'bower_components/open-sans-fontface/',
+          src: 'fonts/**/*',
+          dest: '<%= yeoman.dist %>/styles'
         }]
       },
       styles: {

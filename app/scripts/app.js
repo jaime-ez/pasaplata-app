@@ -22,7 +22,9 @@ angular
     'ngclipboard',
     'platanus.rut',
     'formatAsCurrencyCode',
-    'ng-phone'
+    'ng-phone',
+    'ui.bootstrap',
+    'angular.filter'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -45,6 +47,12 @@ angular
         templateUrl: 'views/terms.html',
         controller: 'TermsCtrl',
         controllerAs: 'terms'
+      })
+      .when('/views/modals/bank_selector_chile', {
+        templateUrl: 'views/modals/bank_selector_chile.html'
+      })
+      .when('/views/modals/bank_selector_colombia', {
+        templateUrl: 'views/modals/bank_selector_colombia.html'
       })
       .otherwise({
         redirectTo: '/'
