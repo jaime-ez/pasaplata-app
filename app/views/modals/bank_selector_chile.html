@@ -5,7 +5,7 @@
   <div class="list-group">
     <div ng-repeat="item in $ctrl.items" class="list-group-item bank-selector-item">
       <div class="row-picture">
-        <img class="circle bank-selector-item-img" src="images/bancos_chile/{{item}}.png" alt="icon">
+        <img class="circle bank-selector-item-img" src="images/bancos_chile/{{item | slugify | latinize}}.png" alt="icon">
       </div>
       <div class="row-content bank-selector-item-text">
         <div class="radio radio-primary">
