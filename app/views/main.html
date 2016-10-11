@@ -1,33 +1,6 @@
-<div class="jumbotron">
-  <img src="images/pasaplata-logo.svg" alt="Colombia" width="200px" height="50px"><br>
-  <h1>Envia dinero a Colombia</h1>
-  <p class="lead">
-    Desde cualquier banco en Chile a todo banco en Colombia
-  </p>
-  <p class="lead" ng-show="marketExchangeRateActual > 0">
-    Precio online:
-    <br>
-    1 CLP = {{marketExchangeRateActual}} COP
-  </p>
-  <p class="lead" ng-show="marketExchangeRateActual === 0">
-    Precio online:
-    <br>
-    <i class="fa fa-refresh fa-spin fa-fw"></i>
-  </p>
-  <div class="alert alert-danger" role="alert" ng-show="marketExchangeRateActual === -1">
-    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-    <span class="sr-only">Error:</span>
-    Servicio momentanemamente no disponible... reintentando en
-    <timer interval="1000" countdown="10" language="es" class="ng-binding">{{secondUnit}}</timer>
-  </div>
-</div>
-
-<div ng-show="!quotation" ng-hide="marketExchangeRateActual === -1">
-  <h4 class="text-center">
-    <span class="label label-info">Selecciona</span>
-  </h4>
-  <br>
-  <form role="form" ng-submit="quote()" name="formQuote">
+<div class="bg-plata" ng-hide="marketExchangeRateActual === -1">
+  <form role="form" ng-submit="quote()" name="formQuote" id="formQuote">
+<!--
     <div class="btn-group btn-group-justified" role="group" aria-label="...">
       <div class="btn-group" role="group">
         <button type="button" class="btn btn-default btn-lg" style="white-space:normal" ng-click="selected = 'clp'" focus-next="srcAmnt">Monto a enviar</button>
@@ -36,67 +9,93 @@
         <button type="button" class="btn btn-default btn-lg" style="white-space:normal" ng-click="selected = 'cop'" focus-next="dstAmnt">Monto a recibir</button>
       </div>
     </div>
+-->
     <div ng-show="selected === 'clp'">
-      <h3>Ingresa el monto a enviar desde Chile</h3>
-      <div class="input-group">
-        <span class="input-group-addon">$</span>
-        <input name="srcAmnt" id="srcAmnt" type="tel" ng-model="sourceAmount" placeholder="En pesos Chilenos (CLP)" class="form-control" format-as-currency-code="CLP" max-value="600000" min-value="0">
-        <span class="input-group-btn">
-          <input type="submit" class="btn btn-primary" value="Cotizar" ng-disabled="formQuote.$invalid">
-        </span>
+      <p class="quote-title text-center">Ingresa cuantos pesos quieres enviar</p>
+      <div class="form-group col-md-12">
+        <input name="srcAmnt" id="srcAmnt" type="tel" ng-model="sourceAmount" class="form-control" format-as-currency-code="CLP" max-value="600000" min-value="0">
       </div>
-      <div on-error="srcAmnt:minValue:Valor debe ser mayor a 1000:I"></div>
-      <div on-error="srcAmnt:maxValue:Valor debe ser menor a 600 000:I"></div>
+      <div class="input-group has-error" on-error="srcAmnt:minValue:Valor debe ser mayor a 1000:I"></div>
+      <div class="input-group has-error" on-error="srcAmnt:maxValue:Valor debe ser menor a 600 000:I"></div>
     </div>
     <div ng-show="selected === 'cop'">
-      <h3>Ingresa el monto a recibir en Colombia</h3>
-      <div class="input-group">
-        <span class="input-group-addon">$</span>
-        <input name="dstAmnt" id="dstAmnt" type="tel" ng-model="destinationAmount" placeholder="En pesos Colombianos (COP)" class="form-control" format-as-currency-code="COP" max-value="2500000" min-value="0">
-        <span class="input-group-btn">
-          <input type="submit" class="btn btn-primary" value="Cotizar" ng-disabled="formQuote.$invalid">
-        </span>
+      <p class="quote-title text-center">o cuanto recibirán en Colombia</p>
+      <div class="form-group col-xs-12">
+        <input name="dstAmnt" id="dstAmnt" type="tel" ng-model="destinationAmount" class="form-control" format-as-currency-code="COP" max-value="2500000" min-value="0">
       </div>
-      <div on-error="dstAmnt:minValue:Valor debe ser mayor a 2000:I"></div>
-      <div on-error="dstAmnt:maxValue:Valor debe ser menor a 2 500 000:I"></div>
+      <div class="input-group has-error" on-error="dstAmnt:minValue:Valor debe ser mayor a 2000:I"></div>
+      <div class="input-group has-error" on-error="dstAmnt:maxValue:Valor debe ser menor a 2 500 000:I"></div>
     </div>
   </form>
-</div>
-
-<div ng-show="quotation === 'pending'">
-  <div class="alert alert-info" role="alert">
-    <h4>
-      <i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
-      Cotizando...
-    </h4>
+  <!--Precio online-->
+  <div class="text-center" ng-hide="selectedBankColombia != 'seleccionar' && !quotation && (sourceAmount > 0 || destinationAmount > 0) ">
+    <p ng-show="marketExchangeRateActual > 0" class="quote-market-exchange-rate">
+      Precio online:
+      <br>
+      1 CLP = {{marketExchangeRateActual}} COP
+    </p>
+    <p ng-show="marketExchangeRateActual === 0">
+      Precio online:
+      <br>
+      <i class="fa fa-refresh fa-spin fa-fw"></i>
+    </p>
   </div>
+
+  <!--Mostrar boton cuando se selecciona banco de destino y no se ha seleccionado monto-->
+  <div ng-show="selectedBankColombia != 'seleccionar' && !quotation && (sourceAmount > 0 || destinationAmount > 0) ">
+    <p class="text-center">
+      <a class="btn btn-raised btn-default btn-cotizar" ng-disabled="formQuote.$invalid" ng-click="quote()">Cotizar</a>
+    </p>
+  </div>
+
+  <!--Selector bancos-->
+  <div class="well box text-center" ng-hide="formQuote.$invalid">
+    <div>
+      <img ng-click="selectChileBankModal()" src="images/bancos_chile/{{selectedBankChile | slugify | latinize}}.png"/>
+      <img src="images/arrow-right.svg" class="arrow-right"/>
+      <img ng-click="selectColombiaBankModal()" src="images/bancos_colombia/{{selectedBankColombia | slugify | latinize}}.png"/>
+    </div>
+    <div>
+      <span class="bank-source-legend">Desde: {{selectedBankChile | lowercase | ucfirst | truncate : 16 : '...'}}</span>
+      <span class="bank-destination-legend">Hacia: {{selectedBankColombia}}</span>
+    </div>
+  </div>
+
+  <div ng-show="quotation === 'pending'">
+    <div class="col-xs-12">
+      <div class="alert alert-info" role="alert">
+        <h4>
+          <i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
+          Cotizando...
+        </h4>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<div class="table" ng-show="quotation && quotation != 'failed' && quotation != 'pending'">
-  <table class="table table-bordered">
-    <thead class="thead-default">
-      <tr>
-        <th>Monto a Enviar</th>
-        <th>Tasa de Cambio</th>
-        <th>Comisión</th>
-        <th>Monto a ser recibido en destino (incluye costos transferencia en colombia)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{quotation.sourceAmountToBeDeposited | currency:"CLP $":0}}</td>
-        <td>COP/CLP {{_.round(quotation.marketExchangeRate, 5)}}</td>
-        <td>{{quotation.dinexFeeTotalAmount | currency:"CLP $":0}}</td>
-        <td>{{quotation.destinationAmountToBeReceived | currency:"COP $":0}}</td>
-      </tr>
-    </tbody>
-  </table>
-  <row class="col-md-6 text-center">
-    <p><a class="btn btn-default" ng-click="reset()">Cotizar de nuevo &nbsp;<span class="glyphicon glyphicon-repeat"></span></a></p>
-  </row>
-  <row class="col-md-6 text-center">
-    <p><a class="btn btn-lg btn-success" ng-href="#/send" focus-here>Quiero enviar! &nbsp;<span class="glyphicon glyphicon-ok"></span></a></p>
-  </row>
+<div class="alert alert-danger" role="alert" ng-show="marketExchangeRateActual === -1">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  Servicio momentanemamente no disponible... reintentando en
+  <timer interval="1000" countdown="10" language="es" class="ng-binding">{{secondUnit}}</timer>
+</div>
+
+<div class="quotation-response" ng-if="quotation">
+  <div class="panel panel-default" ng-show="quotation && quotation != 'failed' && quotation != 'pending'" id="quotationResponse">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Detalle cotización</div>
+      <ul class="list-group">
+      <li class="list-group-item">Monto a Enviar <span class="details">{{quotation.sourceAmountToBeDeposited | currency:"CLP $":0}}</span></li>
+      <li class="list-group-item">Tasa de Cambio <span class="details">COP/CLP {{_.round(quotation.marketExchangeRate, 5)}}</span></li>
+      <li class="list-group-item">Comisión <span class="details">{{quotation.dinexFeeTotalAmount | currency:"CLP $":0}}</span></li>
+        <hr>
+      <li class="list-group-item result">Monto a recibir <span class="details">{{quotation.destinationAmountToBeReceived | currency:"COP $":0}}</span></li>
+    </ul>
+    <div class="panel-footer col-xs-12 quotation-response">
+      <a class="btn-lg btn-block btn-raised" ng-href="#/send" focus-here>Quiero enviar! &nbsp;<span class="glyphicon glyphicon-ok"></span></a>
+    </div>
+  </div>
 </div>
 
 <div ng-show="quotation === 'failed'">
@@ -111,34 +110,37 @@
 </div>
 
 <div class="row marketing" ng-hide="quotation">
-  <h3>Directo desde tu cuenta bancaria a la del destinatario en Colombia</h3>
-  <p>
-    Cotiza en línea y haz una transferencia bancaria para que envíemos el dinero a destino
-  </p>
-
-  <h3>Rapidez</h3>
-  <p>
-    La remesa se ejecuta en minutos a la cuenta del destinatario (aplican restricciones horarias del sistema bancario de Colombia)
-  </p>
-
-  <h3>Costo mínimo</h3>
-  <p>
-    ¡Mejor que Ria y Western Union!
-    Nadie ofrece un mejor precio para envíos desde tu Smartphone, a todo Colombia.
-  </p>
-
-  <h3>Total seguridad</h3>
-  <p>
-    Los envíos se ejecutan en minutos, de lo contrario te devolvemos la transferencia de inmediato.
-  </p>
-
-  <h3>Total transparencia</h3>
-  <p>
-    Siempre sabes cuanto te costará el envío, cual es la tasa de cambio y las comisiones.
-  </p>
-
-  <h3>¡Abierto las 24 horas, desde todas partes!</h3>
-  <p>
-    No más filas ni viajes a la oficina de remesas. Ahora directo desde tu Smartphone.
-  </p>
+  <uib-accordion close-others=false>
+    <div uib-accordion-group class="panel-default accordeon" heading="Envío rápido y directo">
+      <h4>Directo desde tu cuenta bancaria a la del destinatario en Colombia</h4>
+      <p>
+        Cotiza en línea y haz una transferencia bancaria para que envíemos el dinero a destino
+      </p>
+      <h4>Rapidez</h4>
+      <p>
+        La remesa se ejecuta en minutos a la cuenta del destinatario (aplican restricciones horarias del sistema bancario de Colombia)
+      </p>
+    </div>
+    <div uib-accordion-group class="panel-default accordeon" heading="Costo mínimo">
+      <h4>Costo mínimo</h4>
+      <p>
+        ¡Mejor que Ria y Western Union!
+        Nadie ofrece un mejor precio para envíos desde tu Smartphone, a todo Colombia.
+      </p>
+      <h4>Total seguridad</h4>
+      <p>
+        Los envíos se ejecutan en minutos, de lo contrario te devolvemos la transferencia de inmediato.
+      </p>
+    </div>
+    <div uib-accordion-group class="panel-default accordeon" heading="Seguridad y Transparencia">
+      <h4>Total transparencia</h4>
+      <p>
+        Siempre sabes cuanto te costará el envío, cual es la tasa de cambio y las comisiones.
+      </p>
+      <h4>¡Abierto las 24 horas, desde todas partes!</h4>
+      <p>
+        No más filas ni viajes a la oficina de remesas. Ahora directo desde tu Smartphone.
+      </p>
+    </div>
+  </uib-accordion>
 </div>
