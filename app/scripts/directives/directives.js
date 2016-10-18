@@ -10,8 +10,8 @@ angular.module('remittanceApp')
   .directive('focusHere', function ($timeout) {
   return function($scope, element) {
     $timeout(function(){
-      $scope.$watch(function () {return element.is(':visible');}, function(newValue) {
-        if (newValue === true) {
+      $scope.$watch(function () {return element.css('visibility');}, function(newValue) {
+        if (newValue === 'visible') {
          element.focus();
         }
       });
