@@ -15,6 +15,12 @@ angular.module('remittanceApp')
   // reset function
   $scope.reset = function () {
 
+    // inform service availability due to bank hours
+    // get day of the week
+    $scope.day = new Date().getDay();
+    // get time of the day
+    $scope.timeOfDay = new Date().getHours();
+
     // define variables
     $scope.selected = 'clp';
     $scope.sourceCurrency = 'CLP';

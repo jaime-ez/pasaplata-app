@@ -267,3 +267,7 @@ form#formQuote {
   font-style: normal;
   font-stretch: normal;
 }
+
+.alert-bank-hours {
+  margin-bottom: 0px;
+}
