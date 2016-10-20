@@ -17,9 +17,9 @@
     </div>
 -->
     <div ng-show="selected === 'clp'">
-      <p class="quote-title text-center">Ingresa cuantos pesos quieres enviar</p>
+      <p class="quote-title text-center">Ingresa cuantos pesos chilenos quieres enviar</p>
       <div class="form-group col-md-12">
-        <input name="srcAmnt" id="srcAmnt" type="tel" ng-model="sourceAmount" class="form-control" format-as-currency-code="CLP" max-value="600000" min-value="0">
+        <input name="srcAmnt" id="srcAmnt" type="tel" ng-model="sourceAmount" class="form-control" format-as-currency-code="CLP:$CLP" max-value="600000" min-value="0" autofocus>
       </div>
       <div class="input-group has-error" on-error="srcAmnt:minValue:Valor debe ser mayor a 1000:I"></div>
       <div class="input-group has-error" on-error="srcAmnt:maxValue:Valor debe ser menor a 600 000:I"></div>
@@ -27,7 +27,7 @@
     <div ng-show="selected === 'cop'">
       <p class="quote-title text-center">o cuanto recibirán en Colombia</p>
       <div class="form-group col-xs-12">
-        <input name="dstAmnt" id="dstAmnt" type="tel" ng-model="destinationAmount" class="form-control" format-as-currency-code="COP" max-value="2500000" min-value="0">
+        <input name="dstAmnt" id="dstAmnt" type="tel" ng-model="destinationAmount" class="form-control" format-as-currency-code="COP:$C" max-value="2500000" min-value="0">
       </div>
       <div class="input-group has-error" on-error="dstAmnt:minValue:Valor debe ser mayor a 2000:I"></div>
       <div class="input-group has-error" on-error="dstAmnt:maxValue:Valor debe ser menor a 2 500 000:I"></div>
