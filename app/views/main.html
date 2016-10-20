@@ -90,7 +90,10 @@
       <li class="list-group-item">Tasa de Cambio <span class="details">COP/CLP {{_.round(quotation.marketExchangeRate, 5)}}</span></li>
       <li class="list-group-item">Comisión <span class="details">{{quotation.dinexFeeTotalAmount | currency:"CLP $":0}}</span></li>
         <hr>
-      <li class="list-group-item result">Monto a recibir <span class="details">{{quotation.destinationAmountToBeReceived | currency:"COP $":0}}</span></li>
+      <li class="list-group-item result">Monto a recibir <span class="details">{{quotation.destinationAmountToBeReceived | currency:"COP $":0}}</span>
+        <br>
+        <span class="disclaimer">Incluye costos transf. en Colombia</span>
+      </li>
     </ul>
     <div class="panel-footer col-xs-12 quotation-response">
       <a class="btn-lg btn-block btn-raised" ng-href="#/send" focus-here>Quiero enviar! &nbsp;<span class="glyphicon glyphicon-ok"></span></a>
