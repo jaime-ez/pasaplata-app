@@ -82,7 +82,7 @@
 </div>
 
 <div class="quotation-response" ng-if="quotation">
-  <div class="panel panel-default" ng-show="quotation && quotation != 'failed' && quotation != 'pending'" id="quotationResponse">
+  <div class="panel panel-default" ng-show="quotation && quotation != 'failed' && quotation != 'pending' && !quotationAccepted" id="quotationResponse">
     <!-- Default panel contents -->
     <div class="panel-heading">Detalle cotización</div>
       <ul class="list-group">
@@ -96,7 +96,18 @@
       </li>
     </ul>
     <div class="panel-footer col-xs-12 quotation-response">
-      <a class="btn-lg btn-block btn-raised" ng-href="#/send" focus-here>Quiero enviar! &nbsp;<span class="glyphicon glyphicon-ok"></span></a>
+      <a class="btn-lg btn-block btn-raised" href="/#send" ng-click="goToSend()">Quiero enviar! &nbsp;<span class="glyphicon glyphicon-ok"></span></a>
+    </div>
+  </div>
+</div>
+
+<div ng-show="quotationAccepted">
+  <div class="col-xs-12">
+    <div class="alert alert-info" role="alert">
+      <h4>
+        <i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
+        Procesando...
+      </h4>
     </div>
   </div>
 </div>

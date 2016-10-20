@@ -8,7 +8,7 @@
  * Controller of the remittanceApp
  */
 angular.module('remittanceApp')
-  .controller('MainCtrl', function ($scope, $http, $anchorScroll, store, $uibModal, _, OPTIONS, COLOMBIA_BANKS, CHILE_BANKS) {
+  .controller('MainCtrl', function ($scope, $http, $location, $anchorScroll, store, $uibModal, _, OPTIONS, COLOMBIA_BANKS, CHILE_BANKS) {
   // make lodash available
   $scope._ = _;
 
@@ -28,6 +28,7 @@ angular.module('remittanceApp')
     $scope.marketExchangeRateActual = 0;
     $scope.selectedBankChile = CHILE_BANKS[8];
     $scope.selectedBankColombia = 'seleccionar';
+    $scope.quotationAccepted = false;
     // clear past quotations
     store.remove('quotation');
 
@@ -136,6 +137,11 @@ angular.module('remittanceApp')
     }, function () {
       // modal closed
     });
+  };
+
+  $scope.goToSend = function() {
+    $scope.quotationAccepted = true;
+    $location.path('send');
   };
 
 });
