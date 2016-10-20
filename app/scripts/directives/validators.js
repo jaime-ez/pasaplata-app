@@ -91,7 +91,7 @@ angular.module('remittanceApp')
       }
 
       var validator = function(value) {
-        var valueAsNumber = value ? _.toNumber(value.replace(/,/g, '')) : 0;
+        var valueAsNumber = value ? _.toNumber(value.replace(/[a-zA-Z!\?>:;,\$\|<@#%\^&\*\)\(\+\/\\={}\[\]_]/g, '')) : 0;
 
         if (attr.maxValue) {
           if (valueAsNumber <= _.toNumber(attr.maxValue)) {
@@ -129,7 +129,7 @@ angular.module('remittanceApp')
       }
 
       var validator = function(value) {
-        var valueAsNumber = value ? _.toNumber(value.replace(/,/g, '')) : 0;
+        var valueAsNumber = value ? _.toNumber(value.replace(/[a-zA-Z!\?>:;,\$\|<@#%\^&\*\)\(\+\/\\={}\[\]_]/g, '')) : 0;
 
         if (attr.minValue) {
           if (valueAsNumber >= _.toNumber(attr.minValue)) {
