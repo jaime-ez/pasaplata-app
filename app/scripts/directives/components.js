@@ -24,7 +24,10 @@ angular.module('remittanceApp')
       };
     };
 
-    $ctrl.ok = function () {
+    $ctrl.ok = function (item) {
+      if (item) {
+        $ctrl.selected.item = item;
+      }
       $ctrl.close({$value: $ctrl.selected.item});
     };
 
@@ -51,7 +54,10 @@ angular.module('remittanceApp')
       };
     };
 
-    $ctrl.ok = function () {
+    $ctrl.ok = function (item) {
+      if (item) {
+        $ctrl.selected.item = item;
+      }
       $ctrl.close({$value: $ctrl.selected.item});
     };
 

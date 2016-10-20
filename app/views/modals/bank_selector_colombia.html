@@ -3,7 +3,7 @@
 </div>
 <div class="modal-body" id="modal-body">
   <div class="list-group">
-    <div ng-repeat="item in $ctrl.items" class="list-group-item bank-selector-item">
+    <div ng-repeat="item in $ctrl.items" class="list-group-item bank-selector-item" ng-click="$ctrl.ok(item)">
       <div class="row-picture">
         <img class="circle bank-selector-item-img" src="images/bancos_colombia/{{item | slugify | latinize}}.png" alt="icon">
       </div>
