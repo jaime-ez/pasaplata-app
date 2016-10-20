@@ -20,7 +20,7 @@
 
     <form role="form" name="setRemittanceInfoForm" ng-submit="setRemittanceInfo()" ng-show="!remittanceInfo">
       <div class="panel panel-default">
-        <div class="panel-heading">Datos de quién envía en Chile</div>
+        <div class="panel-heading">Tus datos (quién envía en Chile)</div>
         <div class="panel-body">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
@@ -31,7 +31,7 @@
           <br>
           <div class="input-group">
             <span class="input-group-addon">RUT</span>
-            <input name="srcRut" id="rut" type="tel" class="form-control" ng-model="sourceOpts.bankAccountHolderId" placeholder="RUT de la cuenta bancaria desde la cual harás la transferencia" required ng-rut focus-next="srcAddress">
+            <input name="srcRut" id="rut" type="tel" class="form-control" ng-model="sourceOpts.bankAccountHolderId" placeholder="RUT de tu cuenta bancaria" required ng-rut focus-next="srcAddress">
           </div>
           <div class="input-group has-error" on-error="srcRut:rut:Debes completar este campo con un RUT válido"></div>
           <br>
