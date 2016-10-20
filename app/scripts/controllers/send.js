@@ -18,8 +18,7 @@ angular.module('remittanceApp')
 
   $scope.reset = function () {
     // focus on top
-    $location.hash('head');
-    $anchorScroll();
+    $anchorScroll('head');
 
     // inform service availability due to bank hours
     // get day of the week
@@ -63,8 +62,7 @@ angular.module('remittanceApp')
   // set remittance source and destination information
   $scope.setRemittanceInfo = function() {
     // scroll to top
-    $location.hash('head');
-    $anchorScroll();
+    $anchorScroll('head');
 
     // set source info
     $scope.remittanceInfo = true;
@@ -118,8 +116,7 @@ angular.module('remittanceApp')
   $scope.edit = function() {
     $scope.remittanceInfo = false;
     // scroll to top
-    $location.hash('head');
-    $anchorScroll();
+    $anchorScroll('head');
   };
 
   $scope.$on('timer-tick', function (event, args) {
