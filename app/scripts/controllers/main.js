@@ -8,7 +8,7 @@
  * Controller of the remittanceApp
  */
 angular.module('remittanceApp')
-  .controller('MainCtrl', function ($scope, $http, store, $uibModal, _, OPTIONS, COLOMBIA_BANKS, CHILE_BANKS) {
+  .controller('MainCtrl', function ($scope, $http, $anchorScroll, store, $uibModal, _, OPTIONS, COLOMBIA_BANKS, CHILE_BANKS) {
   // make lodash available
   $scope._ = _;
 
@@ -84,6 +84,7 @@ angular.module('remittanceApp')
 
     if (quoteOpts) {
       $http.post(OPTIONS.quoteRemittanceUrl, quoteOpts).then(function successCallback(response) {
+        $anchorScroll('footer');
         $scope.quotation = response.data.quotation;
         $scope.quotation.uid = response.data.uid;
         $scope.quotation.expirationTime = response.data.expirationTime;
