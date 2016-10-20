@@ -8,7 +8,7 @@
  * Controller of the remittanceApp
  */
 angular.module('remittanceApp')
-  .controller('SendCtrl', function ($scope, $http, store, $location, $window, _, COLOMBIA_BANKS, COLOMBIA_BANK_ACCOUNT_TYPES, EMAIL_REGEX, ADD_DASH_RUT, CHILE_COMUNAS, OPTIONS) {
+  .controller('SendCtrl', function ($scope, $location, $anchorScroll, $http, store, _, COLOMBIA_BANKS, COLOMBIA_BANK_ACCOUNT_TYPES, EMAIL_REGEX, ADD_DASH_RUT, CHILE_COMUNAS, OPTIONS) {
   //constants available in scope
   $scope._ = _;
   $scope.colombiaBanks = COLOMBIA_BANKS;
@@ -18,7 +18,8 @@ angular.module('remittanceApp')
 
   $scope.reset = function () {
     // focus on top
-    $window.scrollTo(0,0);
+    $location.hash('head');
+    $anchorScroll();
 
     // inform service availability due to bank hours
     // get day of the week
@@ -61,6 +62,10 @@ angular.module('remittanceApp')
 
   // set remittance source and destination information
   $scope.setRemittanceInfo = function() {
+    // scroll to top
+    $location.hash('head');
+    $anchorScroll();
+
     // set source info
     $scope.remittanceInfo = true;
     $scope.sourceOpts.bankAccountHolderId = ADD_DASH_RUT($scope.sourceOpts.bankAccountHolderId);
@@ -75,7 +80,6 @@ angular.module('remittanceApp')
 
     destinations.push($scope.destinationOpts);
     store.set('destinationOpts', destinations);
-    $window.scrollTo(0,0);
   };
 
   $scope.create = function() {
@@ -113,7 +117,9 @@ angular.module('remittanceApp')
 
   $scope.edit = function() {
     $scope.remittanceInfo = false;
-    $window.scrollTo(0,0);
+    // scroll to top
+    $location.hash('head');
+    $anchorScroll();
   };
 
   $scope.$on('timer-tick', function (event, args) {
