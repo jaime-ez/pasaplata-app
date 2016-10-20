@@ -15,6 +15,9 @@ angular.module('remittanceApp')
   // reset function
   $scope.reset = function () {
 
+    // focus on top
+    $anchorScroll('head');
+
     // define variables
     $scope.selected = 'clp';
     $scope.sourceCurrency = 'CLP';
