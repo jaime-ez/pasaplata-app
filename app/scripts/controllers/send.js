@@ -20,6 +20,12 @@ angular.module('remittanceApp')
     // focus on top
     $window.scrollTo(0,0);
 
+    // inform service availability due to bank hours
+    // get day of the week
+    $scope.day = new Date().getDay();
+    // get time of the day
+    $scope.timeOfDay = new Date().getHours();
+
     // get quotation
     $scope.quotation = store.get('quotation');
     $scope.quotationTime = false;
@@ -40,7 +46,7 @@ angular.module('remittanceApp')
       phoneNumberType: '',
       bankAccountHolderId: '',
       bankAccountHolderName: '',
-      bankName: store.get('destinationOpts').bankName,
+      bankName: store.get('destinationBankName').bankName,
       bankAccountType: '',
       bankAccountNumber: ''
     };
@@ -66,6 +72,7 @@ angular.module('remittanceApp')
     if ($scope.phoneNumberType) {
       $scope.destinationOpts.phoneNumberType = $scope.phoneNumberType;
     }
+
     destinations.push($scope.destinationOpts);
     store.set('destinationOpts', destinations);
     $window.scrollTo(0,0);

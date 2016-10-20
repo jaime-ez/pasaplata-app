@@ -15,12 +15,6 @@ angular.module('remittanceApp')
   // reset function
   $scope.reset = function () {
 
-    // inform service availability due to bank hours
-    // get day of the week
-    $scope.day = new Date().getDay();
-    // get time of the day
-    $scope.timeOfDay = new Date().getHours();
-
     // define variables
     $scope.selected = 'clp';
     $scope.sourceCurrency = 'CLP';
@@ -133,7 +127,7 @@ angular.module('remittanceApp')
 
     modalInstance.result.then(function (selectedItem) {
       $scope.selectedBankColombia = selectedItem;
-      store.set('destinationOpts', {bankName: $scope.selectedBankColombia});
+      store.set('destinationBankName', {bankName: $scope.selectedBankColombia});
       $scope.quote();
     }, function () {
       // modal closed

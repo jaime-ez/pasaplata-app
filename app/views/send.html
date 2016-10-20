@@ -224,6 +224,13 @@
 
 <!--Remittance confirmed success-->
 <div ng-show="quotationConfirmed === 'success'">
+  <!--Alert office hours-->
+  <div class="alert alert-info alert-bank-hours" role="alert" ng-show="day === 6 || day === 7 || timeOfDay > 15">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Info:</span>
+     Debido a los horarios bancarios en Colombia la remesa llegará a destino el día hábil siguiente.
+  </div>
+
   <div class="alert alert-warning" role="alert">
     <h4>
       ¡Excelente! Haz la transferencia bancaria antes de
