@@ -82,7 +82,7 @@
 </div>
 
 <div class="quotation-response" ng-if="quotation">
-  <div class="panel panel-default" ng-show="quotation && quotation != 'failed' && quotation != 'pending' && !quotationAccepted" id="quotationResponse">
+  <div class="panel panel-default" ng-show="quotation && quotation != 'failed' && quotation != 'pending' && quotation != 'maxSourceAmount' && !quotationAccepted" id="quotationResponse">
     <!-- Default panel contents -->
     <div class="panel-heading">Detalle cotización</div>
       <ul class="list-group">
@@ -98,6 +98,24 @@
     <div class="panel-footer col-xs-12 quotation-response">
       <a class="btn-lg btn-block btn-raised" href="/#send" ng-click="goToSend()">Quiero enviar! &nbsp;<span class="glyphicon glyphicon-ok"></span></a>
     </div>
+  </div>
+</div>
+
+<div ng-show="quotation === 'maxSourceAmount'">
+  <div class="panel panel-info">
+    <!-- Default panel contents -->
+    <div class="panel-heading">
+      <h4>Lo sentimos</h4>
+    </div>
+    <div class="panel-body">
+      En este momento sólo podemos procesar remesas <b>por un monto inferior a {{_.floor(quotationMaxSourceAmount, -1) | currency:"CLP $":0}}.</b>
+      <br>
+      <br>
+      Puedes cotizar nuevamente con un monto inferior a {{_.floor(quotationMaxSourceAmount, -1) | currency:"CLP $":0}} o bien realizar la remesa por el monto deseado el próximo día hábil a partir de las 9:30 AM de Chile.
+    </div>
+    <row class="col-md-12 text-center">
+      <p><a class="btn btn-lg btn-info" ng-click="reset()">Cotizar de nuevo &nbsp;<span class="glyphicon glyphicon-repeat"></span></a></p>
+    </row>
   </div>
 </div>
 

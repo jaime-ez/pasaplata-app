@@ -89,10 +89,20 @@ angular.module('remittanceApp')
     if (quoteOpts) {
       $http.post(OPTIONS.quoteRemittanceUrl, quoteOpts).then(function successCallback(response) {
         $anchorScroll('footer');
-        $scope.quotation = response.data.quotation;
-        $scope.quotation.uid = response.data.uid;
-        $scope.quotation.expirationTime = response.data.expirationTime;
-        store.set('quotation', $scope.quotation);
+
+        var today = new Date();
+
+        if (response.data.quotation.maxSourceAmount && (today.getDay() === 6 || today.getDay() === 7 || today.getHours() > 16)) {
+          // inform service availability due to surbtc deposit processing hours
+          $scope.quotation = 'maxSourceAmount';
+          $scope.quotationMaxSourceAmount = response.data.quotation.maxSourceAmount;
+        } else {
+          // remittance possible today
+          $scope.quotation = response.data.quotation;
+          $scope.quotation.uid = response.data.uid;
+          $scope.quotation.expirationTime = response.data.expirationTime;
+          store.set('quotation', $scope.quotation);
+        }
 
       }, function errorCallback() {
         $scope.quotation = 'failed';
