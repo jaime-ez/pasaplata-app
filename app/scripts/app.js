@@ -54,6 +54,11 @@ angular
       .when('/views/modals/bank_selector_colombia', {
         templateUrl: 'views/modals/bank_selector_colombia.html'
       })
+      .when('/contact', {
+        templateUrl: 'views/contact.html',
+        controller: 'ContactCtrl',
+        controllerAs: 'contact'
+      })
       .otherwise({
         redirectTo: '/'
       });
