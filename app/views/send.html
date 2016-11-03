@@ -183,8 +183,8 @@
           <input class="form-control readonlyForm" ng-model="quotation.destinationAmountToBeReceived" readonly>
         </div>
         <br>
-        <label class="control-label">Comisión</label>
-        <div class="input-group">
+        <label class="control-label" ng-show="quotation.dinexFeeTotalAmount != 0">Comisión</label>
+        <div class="input-group" ng-show="quotation.dinexFeeTotalAmount != 0">
           <span class="input-group-addon"><i class="fa fa-usd"></i> CLP</span>
           <input class="form-control readonlyForm" ng-model="quotation.dinexFeeTotalAmount" readonly>
         </div>
@@ -276,7 +276,7 @@
         </tr>
         <tr>
           <th scope="row">Email</th>
-          <td id="dinexEmail">depositos@dinex.cl
+          <td id="dinexEmail">depositos@pasaplata.com
             <button class="btn btn-xs btn-default pull-right btn-clipboard" ngclipboard data-clipboard-target="#dinexEmail">
               <i class="fa fa-copy"></i>
             </button>
