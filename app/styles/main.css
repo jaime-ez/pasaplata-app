@@ -288,3 +288,8 @@ form#formQuote {
   padding-left: 20px;
   padding-right: 20px;
 }
+
+/*Style facebook share button*/
+.facebook-share {
+  margin-top: 10px;
+}
