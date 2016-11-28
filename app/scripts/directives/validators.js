@@ -52,7 +52,7 @@ angular.module('remittanceApp')
         } else if (_.toString(attr.validateIdColombia) === 'CC') {
           //check that is number
           if (/^\d+$/.test(value)) {
-            if (value.length === 10) {
+            if (value.length >= 8) {
               ctrl.$setValidity('validateIdColombia', true);
               return value;
             } else {
