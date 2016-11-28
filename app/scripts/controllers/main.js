@@ -12,6 +12,9 @@ angular.module('remittanceApp')
   // make lodash available
   $scope._ = _;
 
+  //identify user request with a timestamp in order to handle first quotation error
+  var identy = _.now();
+
   // reset function
   $scope.reset = function () {
 
@@ -35,7 +38,8 @@ angular.module('remittanceApp')
     // get basic exchange price
     var basicQuotation = {
         sourceCurrency: $scope.sourceCurrency,
-        sourceAmount: 100000
+        sourceAmount: 100000,
+        identifier: identy
     };
 
     // this sohould be a service
