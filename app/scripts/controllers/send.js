@@ -41,12 +41,14 @@ angular.module('remittanceApp')
       }
     };
 
+    var bname = store.get('destinationBankName') ? store.get('destinationBankName').bankName : '';
+
     $scope.destinationOpts = {
       phoneNumber: '',
       phoneNumberType: '',
       bankAccountHolderId: '',
       bankAccountHolderName: '',
-      bankName: store.get('destinationBankName').bankName,
+      bankName: bname,
       bankAccountType: '',
       bankAccountNumber: ''
     };
