@@ -13,7 +13,7 @@
     <div ng-show="selected === 'clp'">
       <p class="quote-title text-center">Ingresa cuantos pesos chilenos quieres enviar</p>
       <div class="form-group col-md-12">
-        <input name="srcAmnt" id="srcAmnt" type="tel" ng-model="sourceAmount" class="form-control" format-as-currency-code="CLP:$CLP" max-value="600000" min-value="0" autofocus>
+        <input name="srcAmnt" id="srcAmnt" type="tel" ng-model="sourceAmount" class="form-control" format-as-currency-code="CLP:$CLP" max-value="600000" min-value="0" autofocus analytics-on>
       </div>
       <div class="input-group has-error" on-error="srcAmnt:minValue:Valor debe ser mayor a 1000:I"></div>
       <div class="input-group has-error" on-error="srcAmnt:maxValue:Valor debe ser menor a 600 000:I"></div>
@@ -44,16 +44,16 @@
   <!--Mostrar boton cuando se selecciona banco de destino y no se ha seleccionado monto-->
   <div ng-show="selectedBankColombia != 'seleccionar' && !quotation && (sourceAmount > 0 || destinationAmount > 0) ">
     <p class="text-center">
-      <a class="btn btn-raised btn-default btn-cotizar" ng-disabled="formQuote.$invalid" ng-click="quote()">Cotizar</a>
+      <a class="btn btn-raised btn-default btn-cotizar" ng-disabled="formQuote.$invalid" ng-click="quote()" analytics-on analytics-event="quoteButton">Cotizar</a>
     </p>
   </div>
 
   <!--Selector bancos-->
   <div class="well box text-center" ng-hide="formQuote.$invalid">
     <div>
-      <img ng-click="selectChileBankModal()" src="images/bancos_chile/{{selectedBankChile | slugify | latinize}}.png" class="image-shadow"/>
+      <img ng-click="selectChileBankModal()" src="images/bancos_chile/{{selectedBankChile | slugify | latinize}}.png" class="image-shadow" analytics-on analytics-event="selectChileBank"/>
       <img src="images/arrow-right.svg" class="arrow-right"/>
-      <img ng-click="selectColombiaBankModal()" src="images/bancos_colombia/{{selectedBankColombia | slugify | latinize}}.png" class="image-shadow"/>
+      <img ng-click="selectColombiaBankModal()" src="images/bancos_colombia/{{selectedBankColombia | slugify | latinize}}.png" class="image-shadow" analytics-on analytics-event="selectColombiaBank"/>
     </div>
     <div>
       <span class="bank-source-legend">Desde: {{selectedBankChile | lowercase | ucfirst | truncate : 16 : '...'}}</span>
@@ -96,7 +96,7 @@
       </li>
     </ul>
     <div class="panel-footer col-xs-12 quotation-response">
-      <a class="btn-lg btn-block btn-raised" href="/#send" ng-click="goToSend()">Quiero enviar! &nbsp;<span class="glyphicon glyphicon-ok"></span></a>
+      <a class="btn-lg btn-block btn-raised" href="/#send" ng-click="goToSend()" analytics-on analytics-event="quotationAccepted">Quiero enviar! &nbsp;<span class="glyphicon glyphicon-ok"></span></a>
     </div>
   </div>
 </div>
