@@ -24,7 +24,9 @@ angular
     'formatAsCurrencyCode',
     'ng-phone',
     'ui.bootstrap',
-    'angular.filter'
+    'angular.filter',
+    'angulartics',
+    'angulartics.google.analytics'
   ])
   .config(function ($routeProvider) {
     $routeProvider
