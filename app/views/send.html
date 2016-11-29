@@ -24,20 +24,20 @@
         <div class="panel-body">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-            <input name="srcEmail" type="email" class="form-control" ng-model="sourceOpts.email" placeholder="Correo Electrónico" autofocus required ng-pattern="emailRegex" focus-next="rut">
+            <input name="srcEmail" type="email" class="form-control" ng-model="sourceOpts.email" placeholder="Correo Electrónico" autofocus required ng-pattern="emailRegex" focus-next="rut" analytics-on>
           </div>
           <div class="input-group has-error" on-error="srcEmail:pattern:Debes completar este campo con un email válido"></div>
           <div class="input-group has-error" on-error="srcEmail:required:Debes completar este campo con un email válido"></div>
           <br>
           <div class="input-group">
             <span class="input-group-addon">RUT</span>
-            <input name="srcRut" id="rut" type="tel" class="form-control" ng-model="sourceOpts.bankAccountHolderId" placeholder="RUT de tu cuenta bancaria" required ng-rut focus-next="srcAddress">
+            <input name="srcRut" id="rut" type="tel" class="form-control" ng-model="sourceOpts.bankAccountHolderId" placeholder="RUT de tu cuenta bancaria" required ng-rut focus-next="srcAddress" analytics-on>
           </div>
           <div class="input-group has-error" on-error="srcRut:rut:Debes completar este campo con un RUT válido"></div>
           <br>
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-home"></i></span>
-            <input name="srcAddress" id="srcAddress" type="text" class="form-control" ng-model="sourceOpts.homeAddress.address" placeholder="Ingresa tu dirección" required focus-next="srcComunaSelect">
+            <input name="srcAddress" id="srcAddress" type="text" class="form-control" ng-model="sourceOpts.homeAddress.address" placeholder="Ingresa tu dirección" required focus-next="srcComunaSelect" analytics-on>
           </div>
           <div class="input-group has-error" on-error="srcAddress:required:Ingresa tu dirección"></div>
           <br>
@@ -58,19 +58,19 @@
         <div class="panel-body">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-phone"></i> +57</span>
-            <input name="destPhone" id="destPhone" type="tel" class="form-control" ng-model="destinationOpts.phoneNumber" placeholder="Teléfono del destinatario" required phone-number="CO" focus-next="destId">
+            <input name="destPhone" id="destPhone" type="tel" class="form-control" ng-model="destinationOpts.phoneNumber" placeholder="Teléfono del destinatario" required phone-number="CO" focus-next="destId" analytics-on>
           </div>
           <div class="input-group has-error" on-error="destPhone:phoneNumber:Ingresa un número de teléfono válido"></div>
           <br>
           <div class="input-group">
             <span class="input-group-addon">CC</span>
-            <input name="destId" id="destId" type="tel" class="form-control" ng-model="destinationOpts.bankAccountHolderId" placeholder="Número de ciudadania del destinatario" required validate-id-colombia="CC" focus-next="destName">
+            <input name="destId" id="destId" type="tel" class="form-control" ng-model="destinationOpts.bankAccountHolderId" placeholder="Número de ciudadania del destinatario" required validate-id-colombia="CC" focus-next="destName" analytics-on>
           </div>
           <div class="input-group has-error" on-error="destId:validateIdColombia:Ingresa un número válido de cédula de ciudadanía"></div>
           <br>
           <div class="input-group">
             <span class="input-group-addon">Nombre</span>
-            <input name="destName" id="destName" type="text" class="form-control" ng-model="destinationOpts.bankAccountHolderName" placeholder="Nombre Completo del destinatario" required focus-next="destBankSelect">
+            <input name="destName" id="destName" type="text" class="form-control" ng-model="destinationOpts.bankAccountHolderName" placeholder="Nombre Completo del destinatario" required focus-next="destBankSelect" analytics-on>
           </div>
           <div class="input-group has-error" on-error="destName:required:Ingresa un nombre de destinatario"></div>
           <br>
@@ -100,8 +100,8 @@
           <br>
         </div>
       </div>
-      <a class="btn btn-default pull-left" href="#/">Nueva cotización &nbsp;<span class="glyphicon glyphicon-repeat"></span></a>
-      <button id="confirm" type="submit" class="btn btn-primary pull-right" ng-disabled="setRemittanceInfoForm.$invalid">Confirmar</button>
+      <a class="btn btn-default pull-left" href="#/" analytics-on analytics-event="newQuotationAtInputDataForm">Nueva cotización &nbsp;<span class="glyphicon glyphicon-repeat"></span></a>
+      <button id="confirm" type="submit" class="btn btn-primary pull-right" ng-disabled="setRemittanceInfoForm.$invalid" analytics-on>Confirmar</button>
       <br>
     </form>
     <br>
@@ -192,10 +192,10 @@
     </div>
 
     <row class="col-md-6 text-center">
-      <p><a class="btn btn-default" ng-click="edit()">Editar &nbsp;<span class="glyphicon glyphicon-edit"></span></a></p>
+      <p><a class="btn btn-default" ng-click="edit()" analytics-on>Editar &nbsp;<span class="glyphicon glyphicon-edit"></span></a></p>
     </row>
     <row class="col-md-6 text-center">
-      <p><a class="btn btn-lg btn-success" ng-click="create()" onclick="goog_report_conversion ('https://www.pasaplata.com/#/send')">Confirmar &nbsp;<span class="glyphicon glyphicon-ok"></span></a></p>
+      <p><a class="btn btn-lg btn-success" ng-click="create()" onclick="goog_report_conversion ('https://www.pasaplata.com/#/send')" analytics-on analytics-event="finalConfirm">Confirmar &nbsp;<span class="glyphicon glyphicon-ok"></span></a></p>
     </row>
     <br>
     <div>
