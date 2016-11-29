@@ -306,7 +306,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/images',
-          src: ['{,*/}*.{png,jpg,jpeg,gif}', '!bancos_chile/*', '!bancos_colombia/*'],
+          src: ['{,*/}*.{png,jpg,jpeg,gif}', '!favicons/*', '!bancos_chile/*', '!bancos_colombia/*'],
           dest: '<%= yeoman.dist %>/images'
         }]
       }
