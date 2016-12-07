@@ -192,7 +192,7 @@ form#formQuote {
 
 .box {
   width: 296px;
-  height: 112px;
+  height: 140px;
   border-radius: 4px;
   background-color: #fafafa;
   margin: 40px auto;
@@ -292,4 +292,14 @@ form#formQuote {
 /*Style facebook share button*/
 .facebook-share {
   margin-top: 10px;
+}
+
+/*Style to fix well*/
+.well-image {
+  padding-top: 15px;
+}
+
+/*relocate accordeon*/
+.panel-group {
+  margin-top: 40px !important;
 }

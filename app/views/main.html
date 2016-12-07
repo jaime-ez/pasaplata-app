@@ -51,6 +51,9 @@
   <!--Selector bancos-->
   <div class="well box text-center" ng-hide="formQuote.$invalid">
     <div>
+      <span class="label label-info">Selecciona el banco de origen y destino</span>
+    </div>
+    <div class="well-image">
       <img ng-click="selectChileBankModal()" src="images/bancos_chile/{{selectedBankChile | slugify | latinize}}.png" class="image-shadow" analytics-on analytics-event="selectChileBank"/>
       <img src="images/arrow-right.svg" class="arrow-right"/>
       <img ng-click="selectColombiaBankModal()" src="images/bancos_colombia/{{selectedBankColombia | slugify | latinize}}.png" class="image-shadow" analytics-on analytics-event="selectColombiaBank"/>
