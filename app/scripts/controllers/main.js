@@ -8,12 +8,16 @@
  * Controller of the remittanceApp
  */
 angular.module('remittanceApp')
-  .controller('MainCtrl', function ($scope, $http, $location, $anchorScroll, store, $uibModal, _, OPTIONS, COLOMBIA_BANKS, CHILE_BANKS) {
+  .controller('MainCtrl', function ($scope, $http, $location, $anchorScroll, store, $uibModal, _, OPTIONS, COLOMBIA_BANKS, CHILE_BANKS, CHILE_HOLIDAY) {
   // make lodash available
   $scope._ = _;
 
   //identify user request with a timestamp in order to handle first quotation error
   var identy = _.now();
+
+  // determine if it is a chile holiday
+  var currentTime = new Date();
+  $scope.chileHoliday = CHILE_HOLIDAY.indexOf(currentTime.getDate() + '/' + currentTime.getMonth() + '/' + currentTime.getFullYear()) > -1 ? true : false;
 
   // reset function
   $scope.reset = function () {
@@ -96,7 +100,7 @@ angular.module('remittanceApp')
 
         var today = new Date();
 
-        if (response.data.quotation.maxSourceAmount && (today.getDay() === 6 || today.getDay() === 7 || today.getHours() > 16)) {
+        if (response.data.quotation.maxSourceAmount && (today.getDay() === 6 || today.getDay() === 7 || today.getHours() > 16 || $scope.chileHoliday)) {
           // inform service availability due to surbtc deposit processing hours
           $scope.quotation = 'maxSourceAmount';
           $scope.quotationMaxSourceAmount = response.data.quotation.maxSourceAmount;
