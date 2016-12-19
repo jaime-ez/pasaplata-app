@@ -8,5 +8,7 @@
  * Controller of the remittanceApp
  */
 angular.module('remittanceApp')
-  .controller('ContactCtrl', function () {
+  .controller('ContactCtrl', function ($anchorScroll) {
+    // focus on top
+    $anchorScroll('head');
   });
