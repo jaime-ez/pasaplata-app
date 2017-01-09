@@ -100,7 +100,7 @@ angular.module('remittanceApp')
 
         var today = new Date();
 
-        if (response.data.quotation.maxSourceAmount && (today.getDay() === 6 || today.getDay() === 7 || today.getHours() > 16 || $scope.chileHoliday)) {
+        if (response.data.quotation.maxSourceAmount && (today.getDay() === 6 || today.getDay() === 0 || today.getHours() > 16 || $scope.chileHoliday)) {
           // inform service availability due to surbtc deposit processing hours
           $scope.quotation = 'maxSourceAmount';
           $scope.quotationMaxSourceAmount = response.data.quotation.maxSourceAmount;
