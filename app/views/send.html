@@ -100,7 +100,7 @@
           <br>
         </div>
       </div>
-      <a class="btn btn-default pull-left" href="#/" analytics-on analytics-event="newQuotationAtInputDataForm">Nueva cotización &nbsp;<span class="glyphicon glyphicon-repeat"></span></a>
+      <a class="btn btn-default pull-left" href="#!/" analytics-on analytics-event="newQuotationAtInputDataForm">Nueva cotización &nbsp;<span class="glyphicon glyphicon-repeat"></span></a>
       <button id="confirm" type="submit" class="btn btn-primary pull-right" ng-disabled="setRemittanceInfoForm.$invalid" analytics-on>Confirmar</button>
       <br>
     </form>
@@ -195,11 +195,11 @@
       <p><a class="btn btn-default" ng-click="edit()" analytics-on>Editar &nbsp;<span class="glyphicon glyphicon-edit"></span></a></p>
     </row>
     <row class="col-md-6 text-center">
-      <p><a class="btn btn-lg btn-success" ng-click="create()" onclick="goog_report_conversion ('https://www.pasaplata.com/#/send')" analytics-on analytics-event="finalConfirm">Confirmar &nbsp;<span class="glyphicon glyphicon-ok"></span></a></p>
+      <p><a class="btn btn-lg btn-success" ng-click="create()">Confirmar &nbsp;<span class="glyphicon glyphicon-ok"></span></a></p>
     </row>
     <br>
     <div>
-      <h4 class="text-center">Al confirmar declaras estar de acuerdo con los <a href="#/terms" target="_blank">términos y condiciones</a></h4>
+      <h4 class="text-center">Al confirmar declaras estar de acuerdo con los <a href="#!/terms" target="_blank">términos y condiciones</a></h4>
     </div>
   </div>
 
@@ -301,6 +301,6 @@
     <h4>Hubo un problema!</h4>
     <p>{{quotationConfirmedError}}</p>
   </div>
-  <a class="btn btn-default pull-left" ng-href="#/">Nueva cotización &nbsp;<span class="glyphicon glyphicon-repeat"></span></a>
+  <a class="btn btn-default pull-left" ng-href="#!/">Nueva cotización &nbsp;<span class="glyphicon glyphicon-repeat"></span></a>
   <br>
 </div>

@@ -58,7 +58,7 @@ angular.module('remittanceApp')
   $scope.reset();
 
   if (!$scope.quotation) {
-    $location.path('#/');
+    $location.path('#!/');
   }
 
   // set remittance source and destination information

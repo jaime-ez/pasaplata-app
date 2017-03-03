@@ -77,7 +77,7 @@ $( "#contact_form" ).submit(function( event ) {
   // Put the results in a div
   posting.done(function( data ) {
     var content = data.message.toString().split(' ');
-    var response = "<b> Solicitud " + content[1] +  " fue creada exitosamente. </b> <br> <a href='#/'>Volver</a> <br><br>";
+    var response = "<b> Solicitud " + content[1] +  " fue creada exitosamente. </b> <br> <a href='#!/'>Volver</a> <br><br>";
     $( "#result" ).empty().append( response );
 
   });
