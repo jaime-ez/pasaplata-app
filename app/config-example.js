@@ -1,4 +1,4 @@
 var Options = {
-  createRemittanceUrl: 'https://gateway.test.dinex.cl/public/remittance/create',
-  quoteRemittanceUrl: 'https://gateway.test.dinex.cl/public/remittance/quote'
+  createRemittanceUrl: 'http://dinex.jaime.world:5000/public/remittance/create',
+  quoteRemittanceUrl: 'http://dinex.jaime.world:5000/public/remittance/quote'
 };
